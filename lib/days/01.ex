@@ -31,26 +31,26 @@ defmodule D1 do
 
   @behaviour Day
 
-  defp calculate_fuel(sum, mass) when mass < 9, do: sum
+  defp calculate_fuel(mass) when mass < 9, do: 0
 
-  defp calculate_fuel(sum, mass) do
+  defp calculate_fuel(mass) do
     # perform mass -> fuel conversion
     fuel = div(mass, 3) - 2
     # and convert again to account for newly required fuel
-    calculate_fuel(sum + fuel, fuel)
+    fuel + calculate_fuel(fuel)
   end
 
   def solve(input) do
-    part_1_mapped =
-      input
-      |> Utils.to_ints
-      |> Enum.map(fn mass -> div(mass, 3) - 2 end)
+    input = Utils.to_ints(input)
 
-    part_1 = Enum.sum(part_1_mapped)
+    part_1 =
+      input
+      |> Enum.map(fn mass -> div(mass, 3) - 2 end)
+      |> Enum.sum()
 
     part_2 =
-      part_1_mapped
-      |> Enum.map(&calculate_fuel(&1, &1))
+      input
+      |> Enum.map(&calculate_fuel(&1))
       |> Enum.sum()
 
     {
