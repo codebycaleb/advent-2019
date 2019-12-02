@@ -1,4 +1,4 @@
-defmodule Day do
+defmodule Day do 
   @callback solve(arg :: [binary]) :: {integer | binary, integer | binary}
 end
 
@@ -22,6 +22,8 @@ defmodule Advent do
     format = fn x, leading -> x |> Integer.to_string() |> String.pad_leading(leading) end
     files = File.ls("lib/days") |> elem(1)
     initial_buffer = File.read!("README_template.md")
+    # code formatting
+    initial_buffer = initial_buffer <> "```\n"
 
     {total_runtime, buffer} =
       files
@@ -36,15 +38,23 @@ defmodule Advent do
         module = String.to_existing_atom("Elixir.D#{n}")
         input = "assets/inputs/#{nn}.txt" |> File.read!() |> String.trim() |> String.split("\n")
         {time, {result_1, result_2}} = :timer.tc(module, :solve, [input])
-        buffer = tee(buffer, "Problem #{format.(n, 2)}: #{format.(time, 8)} μs (#{result_1}, #{result_2})")
+
+        buffer =
+          tee(
+            buffer,
+            "Problem #{format.(n, 2)}: #{format.(time, 8)} μs (#{result_1}, #{result_2})"
+          )
+
         {runtime + time, buffer}
       end)
 
+    buffer =
+      buffer
+      |> tee("-------------------")
+      |> tee("Total:  #{format.(total_runtime, 12)} μs")
 
-    buffer = buffer
-    |> tee("-------------------")
-    |> tee("Total:  #{format.(total_runtime, 12)} μs")
-    |> tee("")
+    # code formatting
+    buffer = buffer <> "```\n"
 
     File.write!("README.md", buffer)
   end
