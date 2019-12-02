@@ -7,6 +7,12 @@ defmodule Advent do
   Documentation for Advent.
   """
 
+  defp tee(buffer, content) do
+    # writes the content to stdio and also concats it to the buffer with a newline
+    IO.puts(content)
+    buffer <> content <> "\n"
+  end
+
   @doc """
   Runs all days, printing the time to run (in microsecodns) and the outputs for
   part 1 and part 2 in a 2-tuple.
@@ -15,11 +21,12 @@ defmodule Advent do
     # used for padding spaces
     format = fn x, leading -> x |> Integer.to_string() |> String.pad_leading(leading) end
     files = File.ls("lib/days") |> elem(1)
+    initial_buffer = File.read!("README_template.md")
 
-    total =
+    {total_runtime, buffer} =
       files
       |> Enum.sort()
-      |> Enum.reduce(0, fn filename, runtime ->
+      |> Enum.reduce({0, initial_buffer}, fn filename, {runtime, buffer} ->
         # pattern match on file name, only reading first two chars
         <<x, y>> <> _rest = filename
         # convert chars to int
@@ -29,12 +36,16 @@ defmodule Advent do
         module = String.to_existing_atom("Elixir.D#{n}")
         input = "assets/inputs/#{nn}.txt" |> File.read!() |> String.trim() |> String.split("\n")
         {time, {result_1, result_2}} = :timer.tc(module, :solve, [input])
-        IO.puts("Problem #{format.(n, 2)}: #{format.(time, 8)} μs (#{result_1}, #{result_2})")
-        runtime + time
+        buffer = tee(buffer, "Problem #{format.(n, 2)}: #{format.(time, 8)} μs (#{result_1}, #{result_2})")
+        {runtime + time, buffer}
       end)
 
-    IO.puts("-------------------")
-    IO.puts("Total:  #{format.(total, 12)} μs")
-    IO.puts("")
+
+    buffer = buffer
+    |> tee("-------------------")
+    |> tee("Total:  #{format.(total_runtime, 12)} μs")
+    |> tee("")
+
+    File.write!("README.md", buffer)
   end
 end
