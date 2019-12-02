@@ -20,9 +20,12 @@ defmodule Advent do
       files
       |> Enum.sort()
       |> Enum.reduce(0, fn filename, runtime ->
-        <<x, y>> <> _rest = filename # pattern match on file name, only reading first two chars
-        n = (x - ?0) * 10 + (y - ?0) # convert chars to int
-        nn = to_string([x, y]) # convert to 0-padded string
+        # pattern match on file name, only reading first two chars
+        <<x, y>> <> _rest = filename
+        # convert chars to int
+        n = (x - ?0) * 10 + (y - ?0)
+        # convert to 0-padded string
+        nn = to_string([x, y])
         module = String.to_existing_atom("Elixir.D#{n}")
         input = "assets/inputs/#{nn}.txt" |> File.read!() |> String.trim() |> String.split("\n")
         {time, {result_1, result_2}} = :timer.tc(module, :solve, [input])
