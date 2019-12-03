@@ -1,4 +1,4 @@
-defmodule Day do 
+defmodule Day do
   @callback solve(arg :: [binary]) :: {integer | binary, integer | binary}
 end
 
