@@ -60,6 +60,7 @@ defmodule Segment do
         horizontal = if vertical?(segment), do: other, else: segment
         %Segment{start: {x1, y1}, distance: p1} = vertical
         %Segment{start: {x2, y2}, distance: p2} = horizontal
+
         if x1 in x_range(horizontal) and y2 in y_range(vertical) do
           point = {x1, y2}
           distance_vertical = p1 + abs(y1 - y2)
@@ -134,45 +135,59 @@ defmodule D3 do
           start: {x, y},
           distance: distance
         }
+
         final_location = Segment.ending(segment)
         final_steps = distance + magnitude
-        {lr_segments, ud_segments} = case Segment.vertical?(segment) do
-          true -> {lr_segments, [segment | ud_segments]}
-          false -> {[segment | lr_segments], ud_segments}
-        end
+
+        {lr_segments, ud_segments} =
+          case Segment.vertical?(segment) do
+            true -> {lr_segments, [segment | ud_segments]}
+            false -> {[segment | lr_segments], ud_segments}
+          end
+
         [final_location, lr_segments, ud_segments, final_steps]
       end)
-      {lr_segments, ud_segments}
+
+    {lr_segments, ud_segments}
   end
 
   def solve(input) do
     instruction_sets = Enum.map(input, &parse/1)
-    
-    [{lr_segments_1, ud_segments_1}, {lr_segments_2, ud_segments_2}] = Enum.map(instruction_sets, &to_segments/1)
-    intersections_1 = Enum.flat_map(lr_segments_1, fn segment ->
-      ud_segments_2
-      |> Enum.map(fn other -> Segment.intersection(segment, other) end)
-      |> Enum.filter(&(&1))
-    end)
-    intersections_2 = Enum.flat_map(lr_segments_2, fn segment ->
-      ud_segments_1
-      |> Enum.map(fn other -> Segment.intersection(segment, other) end)
-      |> Enum.filter(&(&1))
-    end)
-    intersections = intersections_1 ++ intersections_2
-    part_1= intersections
-    |> Enum.map(fn
-      {{0, 0}, _steps} -> 999_999
-      {{x, y}, _steps} -> abs(x) + abs(y)
-    end)
-    |> Enum.min
 
-    part_2 = intersections
-    |> Enum.map(fn
-      {_, 0} -> 999_999
-      {_, steps} -> steps
-    end)
-    |> Enum.min
+    [{lr_segments_1, ud_segments_1}, {lr_segments_2, ud_segments_2}] =
+      Enum.map(instruction_sets, &to_segments/1)
+
+    intersections_1 =
+      Enum.flat_map(lr_segments_1, fn segment ->
+        ud_segments_2
+        |> Enum.map(fn other -> Segment.intersection(segment, other) end)
+        |> Enum.filter(& &1)
+      end)
+
+    intersections_2 =
+      Enum.flat_map(lr_segments_2, fn segment ->
+        ud_segments_1
+        |> Enum.map(fn other -> Segment.intersection(segment, other) end)
+        |> Enum.filter(& &1)
+      end)
+
+    intersections = intersections_1 ++ intersections_2
+
+    part_1 =
+      intersections
+      |> Enum.map(fn
+        {{0, 0}, _steps} -> 999_999
+        {{x, y}, _steps} -> abs(x) + abs(y)
+      end)
+      |> Enum.min()
+
+    part_2 =
+      intersections
+      |> Enum.map(fn
+        {_, 0} -> 999_999
+        {_, steps} -> steps
+      end)
+      |> Enum.min()
 
     {
       part_1,
