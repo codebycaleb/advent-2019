@@ -73,8 +73,7 @@ defmodule D2 do
   def solve(input) do
     input =
       input
-      |> hd
-      |> String.split(",")
+      |> Utils.to_strings
       |> Utils.to_ints()
 
     part_1_input = modify(input, 12, 2)

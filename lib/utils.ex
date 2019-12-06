@@ -6,4 +6,7 @@ defmodule Utils do
       |> elem(0)
     end)
   end
+
+  def to_strings([single_string]), do: to_strings(single_string)
+  def to_strings(single_string), do: String.split(single_string, ",")
 end
