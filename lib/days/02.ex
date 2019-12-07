@@ -43,7 +43,7 @@ defmodule D2 do
     Stream.unfold({0, input}, fn {index, acc} ->
       [opcode | params] = Enum.slice(acc, index..(index + 3))
 
-      if opcode == 99 or opcode == nil do
+      if opcode == 99 do
         nil
       else
         [a_index, b_index, output_index] = params

@@ -1,0 +1,209 @@
+require Utils
+
+defmodule D5 do
+  @moduledoc """
+  --- Day 5: Sunny with a Chance of Asteroids ---
+
+  You're starting to sweat as the ship makes its way toward Mercury. The Elves suggest that you get the air conditioner working by upgrading your ship computer to support the Thermal Environment Supervision Terminal.
+
+  The Thermal Environment Supervision Terminal (TEST) starts by running a diagnostic program (your puzzle input). The TEST diagnostic program will run on your existing Intcode computer after a few modifications:
+
+  First, you'll need to add two new instructions:
+
+  Opcode 3 takes a single integer as input and saves it to the position given by its only parameter. For example, the instruction 3,50 would take an input value and store it at address 50.
+  Opcode 4 outputs the value of its only parameter. For example, the instruction 4,50 would output the value at address 50.
+  Programs that use these instructions will come with documentation that explains what should be connected to the input and output. The program 3,0,4,0,99 outputs whatever it gets as input, then halts.
+
+  Second, you'll need to add support for parameter modes:
+
+  Each parameter of an instruction is handled based on its parameter mode. Right now, your ship computer already understands parameter mode 0, position mode, which causes the parameter to be interpreted as a position - if the parameter is 50, its value is the value stored at address 50 in memory. Until now, all parameters have been in position mode.
+
+  Now, your ship computer will also need to handle parameters in mode 1, immediate mode. In immediate mode, a parameter is interpreted as a value - if the parameter is 50, its value is simply 50.
+
+  Parameter modes are stored in the same value as the instruction's opcode. The opcode is a two-digit number based only on the ones and tens digit of the value, that is, the opcode is the rightmost two digits of the first value in an instruction. Parameter modes are single digits, one per parameter, read right-to-left from the opcode: the first parameter's mode is in the hundreds digit, the second parameter's mode is in the thousands digit, the third parameter's mode is in the ten-thousands digit, and so on. Any missing modes are 0.
+
+  Parameters that an instruction writes to will never be in immediate mode.
+
+  Finally, some notes:
+
+  It is important to remember that the instruction pointer should increase by the number of values in the instruction after the instruction finishes. Because of the new instructions, this amount is no longer always 4.
+  Integers can be negative: 1101,100,-1,4,0 is a valid program (find 100 + -1, store the result in position 4).
+  The TEST diagnostic program will start by requesting from the user the ID of the system to test by running an input instruction - provide it 1, the ID for the ship's air conditioner unit.
+
+  It will then perform a series of diagnostic tests confirming that various parts of the Intcode computer, like parameter modes, function correctly. For each test, it will run an output instruction indicating how far the result of the test was from the expected value, where 0 means the test was successful. Non-zero outputs mean that a function is not working correctly; check the instructions that were run before the output instruction to see which one failed.
+
+  Finally, the program will output a diagnostic code and immediately halt. This final output isn't an error; an output followed immediately by a halt means the program finished. If all outputs were zero except the diagnostic code, the diagnostic program ran successfully.
+
+  After providing 1 to the only input instruction and passing all the tests, what diagnostic code does the program produce?
+
+  --- Part Two ---
+  The air conditioner comes online! Its cold air feels good for a while, but then the TEST alarms start to go off. Since the air conditioner can't vent its heat anywhere but back into the spacecraft, it's actually making the air inside the ship warmer.
+
+  Instead, you'll need to use the TEST to extend the thermal radiators. Fortunately, the diagnostic program (your puzzle input) is already equipped for this. Unfortunately, your Intcode computer is not.
+
+  Your computer is only missing a few opcodes:
+
+  Opcode 5 is jump-if-true: if the first parameter is non-zero, it sets the instruction pointer to the value from the second parameter. Otherwise, it does nothing.
+  Opcode 6 is jump-if-false: if the first parameter is zero, it sets the instruction pointer to the value from the second parameter. Otherwise, it does nothing.
+  Opcode 7 is less than: if the first parameter is less than the second parameter, it stores 1 in the position given by the third parameter. Otherwise, it stores 0.
+  Opcode 8 is equals: if the first parameter is equal to the second parameter, it stores 1 in the position given by the third parameter. Otherwise, it stores 0.
+  Like all instructions, these instructions need to support parameter modes as described above.
+
+  Normally, after an instruction is finished, the instruction pointer increases by the number of values in that instruction. However, if the instruction modifies the instruction pointer, that value is used and the instruction pointer is not automatically increased.
+
+  This time, when the TEST diagnostic program runs its input instruction to get the ID of the system to test, provide it 5, the ID for the ship's thermal radiator controller. This diagnostic test suite only outputs one number, the diagnostic code.
+
+  What is the diagnostic code for system ID 5?
+  """
+
+  @behaviour Day
+  @arity_table %{
+    1 => 3,
+    2 => 3,
+    3 => 1,
+    4 => 1,
+    5 => 2,
+    6 => 2,
+    7 => 3,
+    8 => 3,
+    99 => 0
+  }
+  @output_table %{
+    1 => 2,
+    2 => 2,
+    3 => 0,
+    4 => 1,
+    5 => 2,
+    6 => 2,
+    7 => 2,
+    8 => 2,
+    99 => nil
+  }
+
+  def humanize(opcode) do
+    [code, _arity, modes] = parse_opcode(opcode)
+
+    opcode_table = %{
+      1 => :add,
+      2 => :mul,
+      3 => :sav,
+      4 => :prt,
+      99 => :end
+    }
+
+    {Map.get(opcode_table, code),
+     Enum.map(modes, fn
+       0 -> :positional
+       1 -> :immediate
+     end)}
+  end
+
+  def pad_param_modes(modes, arity),
+    do: if(length(modes) < arity, do: pad_param_modes([0 | modes], arity), else: modes)
+
+  def parse_opcode(opcode) do
+    code = rem(opcode, 100)
+    arity = Map.fetch!(@arity_table, code)
+
+    [
+      code,
+      arity,
+      opcode |> div(100) |> Integer.digits() |> pad_param_modes(arity) |> Enum.reverse()
+    ]
+  end
+
+  def execute(input, param \\ nil) do
+    Stream.unfold({0, input}, fn {index, acc} ->
+      opcode = Enum.at(acc, index)
+      [opcode, arity, modes] = parse_opcode(opcode)
+
+      if opcode == 99 do
+        nil
+      else
+        param_modes =
+          acc
+          |> Enum.slice((index + 1)..(index + arity))
+          |> Enum.zip(modes)
+
+        {input_params, output_index_list} =
+          Enum.split(param_modes, Map.fetch!(@output_table, opcode))
+
+        input_values =
+          input_params
+          |> Enum.map(fn
+            {v, 1} -> v
+            {i, 0} -> Enum.at(acc, i)
+          end)
+
+        output_index =
+          if output_index_list == [], do: nil, else: output_index_list |> hd |> elem(0)
+
+        acc =
+          case opcode do
+            1 ->
+              List.replace_at(acc, output_index, Enum.sum(input_values))
+
+            2 ->
+              List.replace_at(acc, output_index, Enum.reduce(input_values, &*/2))
+
+            3 ->
+              List.replace_at(acc, output_index, param)
+
+            7 ->
+              List.replace_at(
+                acc,
+                output_index,
+                Enum.reduce(input_values, fn y, x -> if x < y, do: 1, else: 0 end)
+              )
+
+            8 ->
+              List.replace_at(
+                acc,
+                output_index,
+                Enum.reduce(input_values, fn y, x -> if x == y, do: 1, else: 0 end)
+              )
+
+            _ ->
+              acc
+          end
+
+        output = if opcode == 4, do: List.first(input_values), else: nil
+
+        index =
+          case opcode do
+            5 ->
+              unless List.first(input_values) == 0,
+                do: List.last(input_values),
+                else: index + arity + 1
+
+            6 ->
+              if List.first(input_values) == 0,
+                do: List.last(input_values),
+                else: index + arity + 1
+
+            # default case: just advance the pointer
+            _ ->
+              index + arity + 1
+          end
+
+        {output, {index, acc}}
+      end
+    end)
+    |> Enum.at(-1)
+  end
+
+  def solve(input) do
+    input =
+      input
+      |> Utils.to_strings()
+      |> Utils.to_ints()
+
+    part_1 = execute(input, 1)
+    part_2 = execute(input, 5)
+
+    {
+      part_1,
+      part_2
+    }
+  end
+end

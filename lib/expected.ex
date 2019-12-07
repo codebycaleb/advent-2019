@@ -16,6 +16,10 @@ defmodule Expected do
       },
       "04" => %{
         "99,111" => {2, 1}
+      },
+      "05" => %{
+        # no good example input / output
+        File.read!("assets/inputs/05.txt") => {7_566_643, 9_265_694}
       }
     }
 end
