@@ -31,6 +31,23 @@ defmodule D4 do
     right >= left and ascending?(next)
   end
 
+  def next_ascending(x) do
+    x = (x + 1)
+    if ascending?(x) do
+      x
+    else
+      x
+      |> Integer.digits
+      |> Enum.scan(fn x, last ->
+        if last == 0 or x < last, do: 0, else: x
+      end)
+      |> Enum.scan(fn x, last ->
+        if x == 0, do: last, else: x
+      end)
+      |> Integer.undigits
+    end
+  end
+
   def double?(x) when x < 10, do: false
 
   def double?(x) do
@@ -53,9 +70,9 @@ defmodule D4 do
   def explicit_double?(x), do: explicit_double?(div(x, 10), rem(x, 10), 1)
 
   def solve(input) do
-    [minimum, maximum] = input |> Utils.to_strings() |> Utils.to_ints()
+    [minimum, maximum] = input |> hd |> String.split("-") |> Utils.to_ints()
 
-    ascending = Enum.filter(minimum..maximum, &ascending?/1)
+    ascending = Stream.iterate(minimum, &next_ascending/1) |> Enum.take_while(fn x -> x <= maximum end)
 
     part_1 = ascending |> Enum.filter(&double?/1)
 
