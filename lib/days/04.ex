@@ -32,19 +32,20 @@ defmodule D4 do
   end
 
   def next_ascending(x) do
-    x = (x + 1)
+    x = x + 1
+
     if ascending?(x) do
       x
     else
       x
-      |> Integer.digits
+      |> Integer.digits()
       |> Enum.scan(fn x, last ->
         if last == 0 or x < last, do: 0, else: x
       end)
       |> Enum.scan(fn x, last ->
         if x == 0, do: last, else: x
       end)
-      |> Integer.undigits
+      |> Integer.undigits()
     end
   end
 
@@ -72,7 +73,8 @@ defmodule D4 do
   def solve(input) do
     [minimum, maximum] = input |> hd |> String.split("-") |> Utils.to_ints()
 
-    ascending = Stream.iterate(minimum, &next_ascending/1) |> Enum.take_while(fn x -> x <= maximum end)
+    ascending =
+      Stream.iterate(minimum, &next_ascending/1) |> Enum.take_while(fn x -> x <= maximum end)
 
     part_1 = ascending |> Enum.filter(&double?/1)
 
