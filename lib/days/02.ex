@@ -43,7 +43,7 @@ defmodule D2 do
   @behaviour Day
 
   defp execute(input) do
-    %Program{state: %{0 => result}} = input |> Program.new |> Program.evaluate
+    %Program{state: %{0 => result}} = input |> Program.new() |> Program.evaluate()
     result
   end
 
