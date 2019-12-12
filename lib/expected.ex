@@ -22,7 +22,14 @@ defmodule Expected do
         File.read!("assets/inputs/05.txt") => {7_566_643, 9_265_694}
       },
       "06" => %{
-        "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L\" => {42, 0}
+        # provided
+        "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L\nK)YOU\nI)SAN" => {54, 4},
+        # odd distance
+        "COM)A\nA)B\nA)YOU\nB)SAN" => {8, 1},
+        # YOU close to COM
+        "COM)A\nA)B\nB)C\nC)D\nD)E\nE)F\nA)YOU\nF)SAN" => {30, 5},
+        # SAN close to COM
+        "COM)A\nA)B\nB)C\nC)D\nD)E\nE)F\nF)YOU\nA)SAN" => {30, 5}
       }
     }
 end
