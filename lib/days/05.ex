@@ -1,4 +1,5 @@
 require Utils
+require Program
 
 defmodule D5 do
   @moduledoc """
@@ -57,149 +58,12 @@ defmodule D5 do
   """
 
   @behaviour Day
-  @arity_table %{
-    1 => 3,
-    2 => 3,
-    3 => 1,
-    4 => 1,
-    5 => 2,
-    6 => 2,
-    7 => 3,
-    8 => 3,
-    99 => 0
-  }
-  @output_table %{
-    1 => 2,
-    2 => 2,
-    3 => 0,
-    4 => 1,
-    5 => 2,
-    6 => 2,
-    7 => 2,
-    8 => 2,
-    99 => nil
-  }
-
-  def humanize(opcode) do
-    [code, _arity, modes] = parse_opcode(opcode)
-
-    opcode_table = %{
-      1 => :add,
-      2 => :mul,
-      3 => :sav,
-      4 => :prt,
-      99 => :end
-    }
-
-    {Map.get(opcode_table, code),
-     Enum.map(modes, fn
-       0 -> :positional
-       1 -> :immediate
-     end)}
-  end
-
-  def pad_param_modes(modes, arity),
-    do: if(length(modes) < arity, do: pad_param_modes([0 | modes], arity), else: modes)
-
-  def parse_opcode(opcode) do
-    code = rem(opcode, 100)
-    arity = Map.fetch!(@arity_table, code)
-
-    [
-      code,
-      arity,
-      opcode |> div(100) |> Integer.digits() |> pad_param_modes(arity) |> Enum.reverse()
-    ]
-  end
-
-  def execute(input, param \\ nil) do
-    Stream.unfold({0, input}, fn {index, acc} ->
-      opcode = Enum.at(acc, index)
-      [opcode, arity, modes] = parse_opcode(opcode)
-
-      if opcode == 99 do
-        nil
-      else
-        param_modes =
-          acc
-          |> Enum.slice((index + 1)..(index + arity))
-          |> Enum.zip(modes)
-
-        {input_params, output_index_list} =
-          Enum.split(param_modes, Map.fetch!(@output_table, opcode))
-
-        input_values =
-          input_params
-          |> Enum.map(fn
-            {v, 1} -> v
-            {i, 0} -> Enum.at(acc, i)
-          end)
-
-        output_index =
-          if output_index_list == [], do: nil, else: output_index_list |> hd |> elem(0)
-
-        acc =
-          case opcode do
-            1 ->
-              List.replace_at(acc, output_index, Enum.sum(input_values))
-
-            2 ->
-              List.replace_at(acc, output_index, Enum.reduce(input_values, &*/2))
-
-            3 ->
-              List.replace_at(acc, output_index, param)
-
-            7 ->
-              List.replace_at(
-                acc,
-                output_index,
-                Enum.reduce(input_values, fn y, x -> if x < y, do: 1, else: 0 end)
-              )
-
-            8 ->
-              List.replace_at(
-                acc,
-                output_index,
-                Enum.reduce(input_values, fn y, x -> if x == y, do: 1, else: 0 end)
-              )
-
-            _ ->
-              acc
-          end
-
-        output = if opcode == 4, do: List.first(input_values), else: nil
-
-        index =
-          case opcode do
-            5 ->
-              unless List.first(input_values) == 0,
-                do: List.last(input_values),
-                else: index + arity + 1
-
-            6 ->
-              if List.first(input_values) == 0,
-                do: List.last(input_values),
-                else: index + arity + 1
-
-            # default case: just advance the pointer
-            _ ->
-              index + arity + 1
-          end
-
-        {output, {index, acc}}
-      end
-    end)
-    |> Enum.at(-1)
-  end
 
   def solve(input) do
-    input =
-      input
-      |> Utils.to_strings()
-      |> Utils.to_ints()
+    input = input |> Utils.to_strings() |> Utils.to_ints()
 
-    part_1 = execute(input, 1)
-    part_2 = execute(input, 5)
+    %Program{output: [part_1 | _]} = Program.evaluate(Program.new(input, 1))
+    %Program{output: [part_2]} = Program.evaluate(Program.new(input, 5))
 
     {
       part_1,

@@ -1,4 +1,5 @@
 require Utils
+require Program
 
 defmodule D2 do
   @moduledoc """
@@ -16,6 +17,8 @@ defmodule D2 do
   Opcode 2 works exactly like opcode 1, except it multiplies the two inputs instead of adding them. Again, the three integers after the opcode indicate where the inputs and outputs are, not their values.
 
   Once you're done processing an opcode, move to the next one by stepping forward 4 positions.
+
+  Once you have a working computer, the first step is to restore the gravity assist program (your puzzle input) to the "1202 program alarm" state it had just before the last computer caught fire. To do this, before running the program, replace position 1 with the value 12 and replace position 2 with the value 2. What value is left at position 0 after the program halts?
 
   --- Part Two ---
   "Good, the new computer seems to be working correctly! Keep it nearby during this mission - you'll probably use it again. Real Intcode computers support many more features than your new one, but we'll let you know what they are as you need them."
@@ -40,28 +43,8 @@ defmodule D2 do
   @behaviour Day
 
   defp execute(input) do
-    Stream.unfold({0, input}, fn {index, acc} ->
-      [opcode | params] = Enum.slice(acc, index..(index + 3))
-
-      if opcode == 99 do
-        nil
-      else
-        [a_index, b_index, output_index] = params
-        a = Enum.at(acc, a_index)
-        b = Enum.at(acc, b_index)
-        index = index + 4
-
-        acc =
-          case opcode do
-            1 -> List.replace_at(acc, output_index, a + b)
-            2 -> List.replace_at(acc, output_index, a * b)
-          end
-
-        {acc, {index, acc}}
-      end
-    end)
-    |> Enum.at(-1)
-    |> Enum.at(0)
+    %Program{state: %{0 => result}} = input |> Program.new |> Program.evaluate
+    result
   end
 
   defp modify(list, value_at_index_1, value_at_index_2) do
