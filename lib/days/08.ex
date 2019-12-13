@@ -66,59 +66,60 @@ defmodule D8 do
     #   IO.puts(Enum.join(row))
     # end)
 
-    part_2 = input
-    |> Enum.chunk_every(25 * 6)
-    |> Enum.reduce(fn layer, acc ->
-      layer
-      |> Enum.zip(acc)
-      |> Enum.map(fn {x, y} -> if y == 2, do: x, else: y end)
-    end)
-    |> Enum.chunk_every(25)
-    |> Enum.zip()
-    |> Enum.map(&Tuple.to_list/1)
-    |> Enum.chunk_by(&(&1 == [0, 0, 0, 0, 0, 0]))
-    |> Enum.reject(&(&1 == [[0, 0, 0, 0, 0, 0]]))
-    |> Enum.map(fn letter ->
-      case letter do
-        [
-          [1, 1, 1, 1, 1, 1],
-          [1, 0, 0, 1, 0, 0],
-          [1, 0, 0, 1, 1, 0],
-          [0, 1, 1, 0, 0, 1]
-        ] ->
-          'R'
+    part_2 =
+      input
+      |> Enum.chunk_every(25 * 6)
+      |> Enum.reduce(fn layer, acc ->
+        layer
+        |> Enum.zip(acc)
+        |> Enum.map(fn {x, y} -> if y == 2, do: x, else: y end)
+      end)
+      |> Enum.chunk_every(25)
+      |> Enum.zip()
+      |> Enum.map(&Tuple.to_list/1)
+      |> Enum.chunk_by(&(&1 == [0, 0, 0, 0, 0, 0]))
+      |> Enum.reject(&(&1 == [[0, 0, 0, 0, 0, 0]]))
+      |> Enum.map(fn letter ->
+        case letter do
+          [
+            [1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 1, 0, 0],
+            [1, 0, 0, 1, 1, 0],
+            [0, 1, 1, 0, 0, 1]
+          ] ->
+            'R'
 
-        [
-          [1, 1, 1, 1, 1, 1],
-          [0, 0, 1, 0, 0, 0],
-          [0, 1, 0, 1, 1, 0],
-          [1, 0, 0, 0, 0, 1]
-        ] ->
-          'K'
+          [
+            [1, 1, 1, 1, 1, 1],
+            [0, 0, 1, 0, 0, 0],
+            [0, 1, 0, 1, 1, 0],
+            [1, 0, 0, 0, 0, 1]
+          ] ->
+            'K'
 
-        [
-          [1, 1, 1, 1, 1, 1],
-          [0, 0, 1, 0, 0, 0],
-          [0, 0, 1, 0, 0, 0],
-          [1, 1, 1, 1, 1, 1]
-        ] ->
-          'H'
+          [
+            [1, 1, 1, 1, 1, 1],
+            [0, 0, 1, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1]
+          ] ->
+            'H'
 
-        [
-          [1, 1, 0, 0, 0, 0],
-          [0, 0, 1, 0, 0, 0],
-          [0, 0, 0, 1, 1, 1],
-          [0, 0, 1, 0, 0, 0],
-          [1, 1, 0, 0, 0, 0]
-        ] ->
-          'Y'
+          [
+            [1, 1, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 1, 1, 1],
+            [0, 0, 1, 0, 0, 0],
+            [1, 1, 0, 0, 0, 0]
+          ] ->
+            'Y'
 
-        _ ->
-          letter
-      end
-    end)
-    |> List.flatten
-    |> to_string
+          _ ->
+            letter
+        end
+      end)
+      |> List.flatten()
+      |> to_string
 
     {
       part_1,
