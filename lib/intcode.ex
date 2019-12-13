@@ -49,8 +49,9 @@ defmodule Program do
           Map.put(
             program.state,
             evaluate_index(program, a),
-            program.input
+            hd(program.input)
           ),
+        input: tl(program.input),
         pointer: program.pointer + 2
     }
   end
@@ -184,9 +185,32 @@ defmodule Program do
     end
   end
 
+  def evaluate_until_input_required(program) do
+    {opcode, modes} = parse_operation(program.state[program.pointer])
+    # used in guard below
+    input = program.input
+
+    case opcode do
+      99 ->
+        {:ok, program}
+
+      3 when input == [] ->
+        {:halt, program}
+
+      _ ->
+        params =
+          1..get_arity(opcode)
+          |> Enum.map(fn x -> Map.get(program.state, program.pointer + x) end)
+          |> Enum.zip(modes)
+
+        args = [program | params]
+        evaluate_until_input_required(apply(@opcodes[opcode], args))
+    end
+  end
+
   def new(code, input \\ nil) do
     %Program{
-      input: input,
+      input: List.wrap(input),
       state: code |> Enum.with_index() |> Map.new(fn {v, k} -> {k, v} end)
     }
   end
