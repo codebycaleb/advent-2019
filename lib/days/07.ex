@@ -59,7 +59,7 @@ defmodule D7 do
         programs,
         fn {:halt, program}, {_, %Program{output: [previous_output | _]}} ->
           program = %{program | input: [previous_output]}
-          Program.evaluate_until_input_required(program)
+          Program.run_blocking(program)
         end
       )
 
@@ -108,8 +108,7 @@ defmodule D7 do
             end
           )
 
-        programs =
-          Enum.map([a | rest], fn program -> Program.evaluate_until_input_required(program) end)
+        programs = Enum.map([a | rest], fn program -> Program.run_blocking(program) end)
 
         programs = [{:halt, %Program{output: [0]}} | programs]
         part_2_mapping(programs)

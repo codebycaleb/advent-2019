@@ -3,9 +3,9 @@ defmodule Program do
 
   def evaluate_param(program, {param, mode}) do
     case mode do
-      0 -> program.state[param]
+      0 -> Map.get(program.state, param, 0)
       1 -> param
-      2 -> program.state[program.relative_pointer + param]
+      2 -> Map.get(program.state, program.relative_pointer + param, 0)
     end
   end
 
@@ -185,7 +185,7 @@ defmodule Program do
     end
   end
 
-  def evaluate_until_input_required(program) do
+  def run_blocking(program) do
     {opcode, modes} = parse_operation(program.state[program.pointer])
     # used in guard below
     input = program.input
@@ -204,7 +204,7 @@ defmodule Program do
           |> Enum.zip(modes)
 
         args = [program | params]
-        evaluate_until_input_required(apply(@opcodes[opcode], args))
+        run_blocking(apply(@opcodes[opcode], args))
     end
   end
 
