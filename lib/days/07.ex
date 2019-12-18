@@ -86,8 +86,7 @@ defmodule D7 do
           phase_settings,
           0,
           fn phase, previous_output ->
-            %Program{output: [result]} =
-              Program.evaluate(%{program | input: [phase, previous_output]})
+            %Program{output: [result]} = Program.run(%{program | input: [phase, previous_output]})
 
             result
           end

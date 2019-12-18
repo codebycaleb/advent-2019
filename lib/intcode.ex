@@ -1,7 +1,7 @@
 defmodule Program do
   defstruct [:input, state: %{}, pointer: 0, relative_pointer: 0, output: []]
 
-  def evaluate_param(program, {param, mode}) do
+  def param_value(program, {param, mode}) do
     case mode do
       0 -> Map.get(program.state, param, 0)
       1 -> param
@@ -9,7 +9,7 @@ defmodule Program do
     end
   end
 
-  def evaluate_index(program, {param, mode}) do
+  def param_index(program, {param, mode}) do
     case mode do
       0 -> param
       2 -> program.relative_pointer + param
@@ -22,8 +22,8 @@ defmodule Program do
       | state:
           Map.put(
             program.state,
-            evaluate_index(program, c),
-            evaluate_param(program, a) + evaluate_param(program, b)
+            param_index(program, c),
+            param_value(program, a) + param_value(program, b)
           ),
         pointer: program.pointer + 4
     }
@@ -35,8 +35,8 @@ defmodule Program do
       | state:
           Map.put(
             program.state,
-            evaluate_index(program, c),
-            evaluate_param(program, a) * evaluate_param(program, b)
+            param_index(program, c),
+            param_value(program, a) * param_value(program, b)
           ),
         pointer: program.pointer + 4
     }
@@ -48,7 +48,7 @@ defmodule Program do
       | state:
           Map.put(
             program.state,
-            evaluate_index(program, a),
+            param_index(program, a),
             hd(program.input)
           ),
         input: tl(program.input),
@@ -59,56 +59,56 @@ defmodule Program do
   def write(program, a) do
     %{
       program
-      | output: [evaluate_param(program, a) | program.output],
+      | output: [param_value(program, a) | program.output],
         pointer: program.pointer + 2
     }
   end
 
   def jump_true(program, a, b) do
-    case evaluate_param(program, a) do
+    case param_value(program, a) do
       0 -> %{program | pointer: program.pointer + 3}
-      _ -> %{program | pointer: evaluate_param(program, b)}
+      _ -> %{program | pointer: param_value(program, b)}
     end
   end
 
   def jump_false(program, a, b) do
-    case evaluate_param(program, a) do
-      0 -> %{program | pointer: evaluate_param(program, b)}
+    case param_value(program, a) do
+      0 -> %{program | pointer: param_value(program, b)}
       _ -> %{program | pointer: program.pointer + 3}
     end
   end
 
   def less_than(program, a, b, c) do
-    case evaluate_param(program, a) < evaluate_param(program, b) do
+    case param_value(program, a) < param_value(program, b) do
       true ->
         %{
           program
-          | state: Map.put(program.state, evaluate_index(program, c), 1),
+          | state: Map.put(program.state, param_index(program, c), 1),
             pointer: program.pointer + 4
         }
 
       false ->
         %{
           program
-          | state: Map.put(program.state, evaluate_index(program, c), 0),
+          | state: Map.put(program.state, param_index(program, c), 0),
             pointer: program.pointer + 4
         }
     end
   end
 
   def equals(program, a, b, c) do
-    case evaluate_param(program, a) == evaluate_param(program, b) do
+    case param_value(program, a) == param_value(program, b) do
       true ->
         %{
           program
-          | state: Map.put(program.state, evaluate_index(program, c), 1),
+          | state: Map.put(program.state, param_index(program, c), 1),
             pointer: program.pointer + 4
         }
 
       false ->
         %{
           program
-          | state: Map.put(program.state, evaluate_index(program, c), 0),
+          | state: Map.put(program.state, param_index(program, c), 0),
             pointer: program.pointer + 4
         }
     end
@@ -117,7 +117,7 @@ defmodule Program do
   def adjust_relative_pointer(program, a) do
     %{
       program
-      | relative_pointer: program.relative_pointer + evaluate_param(program, a),
+      | relative_pointer: program.relative_pointer + param_value(program, a),
         pointer: program.pointer + 2
     }
   end
@@ -167,7 +167,7 @@ defmodule Program do
     {opcode, modes}
   end
 
-  def evaluate(program) do
+  def run(program) do
     {opcode, modes} = parse_operation(program.state[program.pointer])
 
     case opcode do
@@ -181,7 +181,7 @@ defmodule Program do
           |> Enum.zip(modes)
 
         args = [program | params]
-        evaluate(apply(@opcodes[opcode], args))
+        run(apply(@opcodes[opcode], args))
     end
   end
 

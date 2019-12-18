@@ -62,8 +62,8 @@ defmodule D5 do
   def solve(input) do
     input = input |> Utils.to_strings() |> Utils.to_ints()
 
-    %Program{output: [part_1 | _]} = Program.evaluate(Program.new(input, 1))
-    %Program{output: [part_2]} = Program.evaluate(Program.new(input, 5))
+    %Program{output: [part_1 | _]} = Program.run(Program.new(input, 1))
+    %Program{output: [part_2]} = Program.run(Program.new(input, 5))
 
     {
       part_1,
