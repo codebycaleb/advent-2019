@@ -60,7 +60,7 @@ defmodule D5 do
   @behaviour Day
 
   def solve(input) do
-    input = input |> Utils.to_strings() |> Utils.to_ints()
+    input = input |> Utils.to_ints()
 
     %Program{output: [part_1 | _]} = Program.run(Program.new(input, 1))
     %Program{output: [part_2]} = Program.run(Program.new(input, 5))

@@ -1,5 +1,8 @@
 defmodule Utils do
-  def to_ints(list_of_strings) do
+  def to_ints(single_string) when is_binary(single_string),
+    do: single_string |> to_strings |> to_ints
+
+  def to_ints(list_of_strings) when is_list(list_of_strings) do
     Enum.map(list_of_strings, fn string ->
       string
       |> Integer.parse()

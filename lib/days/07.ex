@@ -73,7 +73,7 @@ defmodule D7 do
   end
 
   def solve(input) do
-    input = input |> Utils.to_strings() |> Utils.to_ints()
+    input = input |> Utils.to_ints()
 
     program = Program.new(input)
 
