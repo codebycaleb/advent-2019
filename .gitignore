@@ -27,3 +27,6 @@ advent-*.tar
 
 # Ignore any secrets
 /config/*.secret.exs
+
+# Don't share inputs, I guess?
+/assets/inputs/
