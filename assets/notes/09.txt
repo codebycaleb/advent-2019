@@ -1,0 +1,346 @@
+0000    MULI      34463338        34463338            [63]
+0004    CLTI          [63]        34463338            [63]
+0008    TJMP          [63]              53
+0011    MULI             1               3          [1000]
+0015    AJRP           988
+0017    AJRP     [RP + 12]
+0019    AJRP        [1000]
+0021    AJRP      [RP + 6]
+0023    AJRP      [RP + 3]
+0025    SAVE      [RP - 0]
+0027    CEQI        [1000]               1            [63]
+0031    TJMP          [63]              65
+0034    CEQI        [1000]               2            [63]
+0038    TJMP          [63]             904
+0041    CEQI        [1000]               0            [63]
+0045    TJMP          [63]              58
+0048    OUTP          [25]
+0050    OUTP             0
+0052    HALT
+0053    OUTP           [0]
+0055    OUTP             0
+0057    HALT
+0058    OUTP          [17]
+0060    OUTP             0
+0062    HALT
+0063    DATA             0
+0064    DATA             0
+0065    ADDI             0               0          [1020]
+0069    MULI             1             800          [1023]
+0073    ADDI             0             388          [1025]
+0077    ADDI             0              31          [1012]
+0081    MULI             1               1          [1021]
+0085    ADDI            22               0          [1014]
+0089    ADDI             0              30          [1002]
+0093    ADDI             0             716          [1027]
+0097    MULI            32               1          [1009]
+0101    ADDI             0              38          [1017]
+0105    MULI            20               1          [1015]
+0109    ADDI            33               0          [1016]
+0113    ADDI             0              35          [1007]
+0117    ADDI             0              25          [1005]
+0121    MULI            28               1          [1011]
+0125    MULI             1              36          [1008]
+0129    ADDI             0              39          [1001]
+0133    MULI             1              21          [1006]
+0137    ADDI           397               0          [1024]
+0141    MULI             1             807          [1022]
+0145    ADDI             0             348          [1029]
+0149    ADDI             0              23          [1003]
+0153    ADDI            29               0          [1004]
+0157    MULI             1              26          [1013]
+0161    MULI            34               1          [1018]
+0165    MULI             1              37          [1010]
+0169    ADDI             0              27          [1019]
+0173    MULI            24               1          [1000]
+0177    ADDI           353               0          [1028]
+0181    ADDI             0             723          [1026]
+0185    AJRP            14
+0187    ADDI             0        [RP - 9]            [63]
+0191    CEQI          [63]              27            [63]
+0195    TJMP          [63]             205
+0198    ADDI          [64]               1            [64]
+0202    FJMP             0             207
+0205    OUTP         [187]
+0207    MULI          [64]               2            [64]
+0211    AJRP           -17
+0213    CEQI            24        [RP + 6]            [63]
+0217    TJMP          [63]             223
+0220    TJMP             1             229
+0223    OUTP         [213]
+0225    ADDI          [64]               1            [64]
+0229    MULI          [64]               2            [64]
+0233    AJRP             7
+0235    ADDI             0        [RP + 2]            [63]
+0239    CEQI          [63]              21            [63]
+0243    TJMP          [63]             255
+0246    OUTP         [235]
+0248    ADDI          [64]               1            [64]
+0252    FJMP             0             255
+0255    MULI          [64]               2            [64]
+0259    AJRP            -7
+0261    CEQI            29        [RP + 7]            [63]
+0265    TJMP          [63]             273
+0268    OUTP         [261]
+0270    FJMP             0             277
+0273    ADDI          [64]               1            [64]
+0277    MULI          [64]               2            [64]
+0281    AJRP            10
+0283    CEQI      [RP - 5]              31            [63]
+0287    TJMP          [63]             293
+0290    TJMP             1             299
+0293    OUTP         [283]
+0295    ADDI          [64]               1            [64]
+0299    MULI          [64]               2            [64]
+0303    AJRP             2
+0305    CLTI      [RP - 1]              35            [63]
+0309    TJMP          [63]             315
+0312    FJMP             0             321
+0315    OUTP         [305]
+0317    ADDI          [64]               1            [64]
+0321    MULI          [64]               2            [64]
+0325    AJRP             8
+0327    TJMP      [RP + 3]             333
+0330    FJMP             0             339
+0333    OUTP         [327]
+0335    ADDI          [64]               1            [64]
+0339    MULI          [64]               2            [64]
+0343    AJRP            11
+0345    FJMP             0        [RP - 0]
+0348    OUTP         [345]
+0350    FJMP             0             357
+0353    ADDI          [64]               1            [64]
+0357    MULI          [64]               2            [64]
+0361    AJRP           -15
+0363    CEQI            40              40        [RP + 6]
+0367    TJMP        [1019]             379
+0370    OUTP         [363]
+0372    ADDI          [64]               1            [64]
+0376    FJMP             0             379
+0379    MULI          [64]               2            [64]
+0383    AJRP            16
+0385    TJMP             1        [RP - 5]
+0388    OUTP         [385]
+0390    ADDI          [64]               1            [64]
+0394    TJMP             1             397
+0397    MULI          [64]               2            [64]
+0401    AJRP           -25
+0403    MULI             1        [RP - 1]            [63]
+0407    CEQI          [63]              26            [63]
+0411    TJMP          [63]             421
+0414    ADDI          [64]               1            [64]
+0418    FJMP             0             423
+0421    OUTP         [403]
+0423    MULI          [64]               2            [64]
+0427    AJRP            -8
+0429    MULI      [RP + 9]               1            [63]
+0433    CEQI          [63]              25            [63]
+0437    TJMP          [63]             445
+0440    OUTP         [429]
+0442    TJMP             1             449
+0445    ADDI          [64]               1            [64]
+0449    MULI          [64]               2            [64]
+0453    AJRP             5
+0455    CLTI      [RP - 0]              40            [63]
+0459    TJMP          [63]             467
+0462    OUTP         [455]
+0464    FJMP             0             471
+0467    ADDI          [64]               1            [64]
+0471    MULI          [64]               2            [64]
+0475    AJRP            -6
+0477    CLTI            24        [RP + 8]            [63]
+0481    TJMP          [63]             487
+0484    TJMP             1             493
+0487    OUTP         [477]
+0489    ADDI          [64]               1            [64]
+0493    MULI          [64]               2            [64]
+0497    AJRP            15
+0499    CLTI            41              40        [RP + 1]
+0503    TJMP        [1011]             509
+0506    FJMP             0             515
+0509    OUTP         [499]
+0511    ADDI          [64]               1            [64]
+0515    MULI          [64]               2            [64]
+0519    AJRP            12
+0521    TJMP      [RP - 1]             529
+0524    OUTP         [521]
+0526    TJMP             1             533
+0529    ADDI          [64]               1            [64]
+0533    MULI          [64]               2            [64]
+0537    AJRP           -20
+0539    MULI             1        [RP + 2]            [63]
+0543    CEQI          [63]              29            [63]
+0547    TJMP          [63]             555
+0550    OUTP         [539]
+0552    TJMP             1             559
+0555    ADDI          [64]               1            [64]
+0559    MULI          [64]               2            [64]
+0563    AJRP            15
+0565    ADDI      [RP - 9]               0            [63]
+0569    CEQI          [63]              38            [63]
+0573    TJMP          [63]             579
+0576    TJMP             1             585
+0579    OUTP         [565]
+0581    ADDI          [64]               1            [64]
+0585    MULI          [64]               2            [64]
+0589    AJRP            -2
+0591    MULI            42               1        [RP - 3]
+0595    CEQI        [1012]              44            [63]
+0599    TJMP          [63]             609
+0602    ADDI          [64]               1            [64]
+0606    FJMP             0             611
+0609    OUTP         [591]
+0611    MULI          [64]               2            [64]
+0615    AJRP           -21
+0617    CLTI            29        [RP + 8]            [63]
+0621    TJMP          [63]             629
+0624    OUTP         [617]
+0626    FJMP             0             633
+0629    ADDI          [64]               1            [64]
+0633    MULI          [64]               2            [64]
+0637    AJRP            15
+0639    MULI      [RP - 0]               1            [63]
+0643    CEQI          [63]              30            [63]
+0647    TJMP          [63]             657
+0650    ADDI          [64]               1            [64]
+0654    FJMP             0             659
+0657    OUTP         [639]
+0659    MULI          [64]               2            [64]
+0663    AJRP            15
+0665    MULI            43               1        [RP - 8]
+0669    CEQI        [1016]              43            [63]
+0673    TJMP          [63]             681
+0676    OUTP         [665]
+0678    TJMP             1             685
+0681    ADDI          [64]               1            [64]
+0685    MULI          [64]               2            [64]
+0689    AJRP           -10
+0691    CLTI            44              45        [RP - 4]
+0695    TJMP        [1010]             707
+0698    OUTP         [691]
+0700    ADDI          [64]               1            [64]
+0704    FJMP             0             707
+0707    MULI          [64]               2            [64]
+0711    AJRP            11
+0713    FJMP             0        [RP + 2]
+0716    ADDI          [64]               1            [64]
+0720    FJMP             0             725
+0723    OUTP         [713]
+0725    MULI          [64]               2            [64]
+0729    AJRP           -16
+0731    ADDI            45               0        [RP + 8]
+0735    CEQI        [1017]              43            [63]
+0739    TJMP          [63]             749
+0742    ADDI          [64]               1            [64]
+0746    TJMP             1             751
+0749    OUTP         [731]
+0751    MULI          [64]               2            [64]
+0755    AJRP            -3
+0757    CEQI      [RP + 2]              36            [63]
+0761    TJMP          [63]             773
+0764    OUTP         [757]
+0766    ADDI          [64]               1            [64]
+0770    FJMP             0             773
+0773    MULI          [64]               2            [64]
+0777    AJRP            18
+0779    FJMP      [RP - 4]             787
+0782    OUTP         [779]
+0784    TJMP             1             791
+0787    ADDI          [64]               1            [64]
+0791    MULI          [64]               2            [64]
+0795    AJRP            -8
+0797    TJMP             1        [RP + 7]
+0800    ADDI          [64]               1            [64]
+0804    FJMP             0             809
+0807    OUTP         [797]
+0809    MULI          [64]               2            [64]
+0813    AJRP            -2
+0815    CEQI            46              44        [RP + 2]
+0819    TJMP        [1016]             825
+0822    TJMP             1             831
+0825    OUTP         [815]
+0827    ADDI          [64]               1            [64]
+0831    MULI          [64]               2            [64]
+0835    AJRP             7
+0837    ADDI            47               0        [RP - 8]
+0841    CEQI        [1013]              47            [63]
+0845    TJMP          [63]             857
+0848    OUTP         [837]
+0850    ADDI          [64]               1            [64]
+0854    TJMP             1             857
+0857    MULI          [64]               2            [64]
+0861    AJRP           -17
+0863    ADDI      [RP - 4]               0            [63]
+0867    CEQI          [63]              24            [63]
+0871    TJMP          [63]             883
+0874    OUTP         [863]
+0876    ADDI          [64]               1            [64]
+0880    TJMP             1             883
+0883    MULI          [64]               2            [64]
+0887    AJRP            10
+0889    FJMP      [RP + 7]             895
+0892    FJMP             0             901
+0895    OUTP         [889]
+0897    ADDI          [64]               1            [64]
+0901    OUTP          [64]
+0903    HALT
+0904    MULI             1              27        [RP + 1]
+0908    MULI             1             915        [RP - 0]
+0912    TJMP             1             922
+0915    ADDI      [RP + 1]           24405        [RP + 1]
+0919    OUTP      [RP + 1]
+0921    HALT
+0922    AJRP             3
+0924    CLTI      [RP - 2]               3            [63]
+0928    TJMP          [63]             964
+0931    ADDI      [RP - 2]              -1        [RP + 1]
+0935    ADDI           942               0        [RP - 0]
+0939    FJMP             0             922
+0942    MULI             1        [RP + 1]        [RP - 1]
+0946    ADDI      [RP - 2]              -3        [RP + 1]
+0950    ADDI             0             957        [RP - 0]
+0954    FJMP             0             922
+0957    ADDI      [RP + 1]        [RP - 1]        [RP - 2]
+0961    FJMP             0             968
+0964    ADDI      [RP - 2]               0        [RP - 2]
+0968    AJRP            -3
+0970    FJMP             0        [RP - 0]
+
+----------------------------------------------------------
+
+TLDR of part 2 (starts at 0904): do a really inefficient modified fibonacci sequence.
+
+The fibonacci sequence can be summed up as
+
+fib(0) -> 2
+fib(1) -> 3
+fib(2) -> 5
+fib(x) -> fib(x - 3) + fib(x - 1)
+
+and has values of 2, 3, 5, 7, 10, 15, 22, ...
+
+The program wants the 25th value (fib(25) == 21305). Then it adds it to a large static number (24405, in my input), outputs it, and halts.
+
+A much more efficient rewrite of this is
+
+0904	ADDI	         0	         2	  [RP + 1]
+0908	ADDI	         0	         3	  [RP + 2]
+0912	ADDI	         0	         5	  [RP + 3]
+0916	ADDI	         0	         1	 [RP + 26]
+0920	AJRP	         1
+0922	ADDI	  [RP - 0]	  [RP + 2]	  [RP + 3]
+0926	FJMP	  [RP + 4]	       920
+0929	ADDI	  [RP + 3]	     24405	  [RP + 4]
+0933	OUTP	  [RP + 4]
+0935	HALT
+
+Or, in Intcode:
+21101,0,2,1,21101,0,3,2,21101,0,5,3,21101,0,1,26,109,1,22201,0,2,3,1206,4,920,21201,3,24405,4,204,4,99
+
+I ended up writing the part_2_hacked section with the static 24405 initially, but I ended up adding some code to calculate that number so my program would pass on inputs outside of my own. I also wasn't positive if all inputs jump to index 904 for part 2, so I added some logic in calculating that (which might fail on other inputs depending if /u/topaz2078 is really tricky).
+
+These changes ended up reducing my runtime from about 550ms to about 2ms!
+
+You might ask yourself, "why wouldn't he just scan for the static number and use that + 21305"? I thought about it, but the main reasons for sticking with the "hack the Intcode" are
+1. It feels more true to the original prompt for part 2: "Run the BOOST program in sensor boost mode. What are the coordinates of the distress signal?" since I'm still running Intcode - it's just been modified
+2. I really enjoyed the work in reverse engineering the original program as well as writing my own decompiler / compiler, and I wanted to put it to use!

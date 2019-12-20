@@ -208,10 +208,151 @@ defmodule Program do
     end
   end
 
+  def hack(program, entry_point, code) do
+    converted = code |> Enum.with_index(entry_point) |> Map.new(fn {v, k} -> {k, v} end)
+    %{program | state: Map.merge(program.state, converted)}
+  end
+
   def new(code, input \\ nil) do
     %Program{
       input: List.wrap(input),
       state: code |> Enum.with_index() |> Map.new(fn {v, k} -> {k, v} end)
     }
+  end
+
+  defp decompile(state, index, buffer) when index >= map_size(state),
+    do: buffer |> Enum.reverse() |> Enum.join("\n")
+
+  defp decompile(state, index, buffer) do
+    {opcode, modes} =
+      try do
+        parse_operation(state[index])
+      rescue
+        FunctionClauseError -> {state[index], nil}
+      end
+
+    if modes != nil do
+      params =
+        case opcode do
+          99 ->
+            []
+
+          _ ->
+            1..get_arity(opcode)
+            |> Enum.map(fn x -> state[index + x] end)
+            |> Enum.zip(modes)
+        end
+
+      opcode_string =
+        case opcode do
+          1 -> "ADDI"
+          2 -> "MULI"
+          3 -> "SAVE"
+          4 -> "OUTP"
+          5 -> "TJMP"
+          6 -> "FJMP"
+          7 -> "CLTI"
+          8 -> "CEQI"
+          9 -> "AJRP"
+          99 -> "HALT"
+        end
+
+      params_string =
+        params
+        |> Enum.map(fn {param, mode} ->
+          case mode do
+            0 -> "[#{param}]"
+            1 -> param
+            2 -> if param > 0, do: "[RP + #{param}]", else: "[RP - #{abs(param)}]"
+          end
+        end)
+        |> Enum.map(fn x -> x |> to_string |> String.pad_leading(10) end)
+        |> Enum.join("\t")
+
+      index_string =
+        index
+        |> to_string
+        |> String.pad_leading(4, "0")
+
+      buffer = [
+        String.trim(Enum.join([index_string, opcode_string, params_string], "\t")) | buffer
+      ]
+
+      decompile(state, index + 1 + length(params), buffer)
+    else
+      index_string = String.pad_leading(to_string(index), 4, "0")
+      opcode_string = String.pad_leading(to_string(opcode), 10)
+
+      decompile(state, index + 1, [
+        Enum.join([index_string, "DATA", opcode_string], "\t") | buffer
+      ])
+    end
+  end
+
+  def decompile(program) do
+    decompile(program.state, 0, [])
+  end
+
+  def compile(code) do
+    code
+    |> String.split("\n")
+    |> Enum.map(fn line ->
+      line
+      |> String.split("\t")
+      # drop index
+      |> Enum.drop(1)
+    end)
+    |> Enum.flat_map(fn
+      ["DATA", x] ->
+        [x |> String.trim() |> Integer.parse() |> elem(0)]
+
+      [instruction | args] ->
+        opcode =
+          case instruction do
+            "ADDI" -> 1
+            "MULI" -> 2
+            "SAVE" -> 3
+            "OUTP" -> 4
+            "TJMP" -> 5
+            "FJMP" -> 6
+            "CLTI" -> 7
+            "CEQI" -> 8
+            "AJRP" -> 9
+            "HALT" -> 99
+          end
+
+        modes =
+          args
+          |> Enum.map(&String.trim/1)
+          |> Enum.map(fn arg ->
+            case Integer.parse(arg) do
+              {_, ""} -> 1
+              :error -> if String.contains?(arg, "RP"), do: 2, else: 0
+            end
+          end)
+          |> Enum.reverse()
+          |> Integer.undigits()
+
+        opcode = modes * 100 + opcode
+
+        args =
+          args
+          |> Enum.map(&String.trim/1)
+          |> Enum.map(fn arg ->
+            case Integer.parse(arg) do
+              {x, ""} ->
+                x
+
+              :error ->
+                if String.contains?(arg, "RP") do
+                  arg |> String.replace(~r/[\[\]RP +]/, "") |> Integer.parse() |> elem(0)
+                else
+                  arg |> String.replace(~r/[\[\]]/, "") |> Integer.parse() |> elem(0)
+                end
+            end
+          end)
+
+        List.flatten([opcode, args])
+    end)
   end
 end

@@ -44,10 +44,38 @@ defmodule D9 do
   @behaviour Day
 
   def solve(input) do
-    input = input |> Utils.to_strings() |> Utils.to_ints()
+    input = input |> Utils.to_ints()
 
     %Program{output: [part_1]} = Program.run(Program.new(input, 1))
-    %Program{output: [part_2]} = Program.run(Program.new(input, 2))
+
+    part_2_entry =
+      (input
+       |> Enum.with_index()
+       |> Enum.filter(fn {v, _i} -> v == 99 end)
+       |> Enum.map(fn {_v, i} -> i end)
+       |> Enum.at(-2)) + 1
+
+    part_2_static =
+      input
+      |> Enum.chunk_every(6, 1)
+      |> Enum.find(fn
+        [_, _, 1, 204, 1, 99] -> true
+        _ -> false
+      end)
+      |> Enum.slice(0..1)
+      |> Enum.max()
+
+    part_2_hack =
+      "21101,0,2,1,21101,0,3,2,21101,0,5,3,21101,0,1,26,109,1,22201,0,2,3,1206,4,920,21201,3,#{
+        part_2_static
+      },4,204,4,99"
+      |> Utils.to_ints()
+
+    part_2_hacked =
+      Program.new(input, 2)
+      |> Program.hack(part_2_entry, part_2_hack)
+
+    %Program{output: [part_2]} = Program.run(part_2_hacked)
 
     {
       part_1,
