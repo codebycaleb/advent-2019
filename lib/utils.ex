@@ -1,4 +1,6 @@
 defmodule Utils do
+  def to_ints([single_string]), do: to_ints(single_string)
+
   def to_ints(single_string) when is_binary(single_string),
     do: single_string |> to_strings |> to_ints
 
