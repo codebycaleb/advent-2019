@@ -290,9 +290,11 @@ defmodule Program do
     line = index_string <> "\t" <> instruction
     buffer = [line | buffer]
 
+    opcode = rem(state[index], 100)
+
     index =
-      if state[index] in ([99] ++ Enum.to_list(1..9)),
-        do: index + 1 + get_arity(state[index]),
+      if opcode in ([99] ++ Enum.to_list(1..9)),
+        do: index + 1 + get_arity(opcode),
         else: index + 1
 
     decompile(state, index, buffer)
