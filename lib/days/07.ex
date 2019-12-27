@@ -57,7 +57,7 @@ defmodule D7 do
     programs =
       Enum.scan(
         programs,
-        fn {:halt, program}, {_, %Program{output: [previous_output | _]}} ->
+        fn {:block, program}, {_, %Program{output: [previous_output | _]}} ->
           program = %{program | input: [previous_output]}
           Program.run_blocking(program)
         end
@@ -67,8 +67,8 @@ defmodule D7 do
     programs = List.replace_at(programs, 0, {final_status, final_program})
 
     case final_status do
-      :halt -> part_2_mapping(programs)
-      :ok -> hd(final_program.output)
+      :block -> part_2_mapping(programs)
+      :halt -> hd(final_program.output)
     end
   end
 
@@ -109,7 +109,7 @@ defmodule D7 do
 
         programs = Enum.map([a | rest], fn program -> Program.run_blocking(program) end)
 
-        programs = [{:halt, %Program{output: [0]}} | programs]
+        programs = [{:block, %Program{output: [0]}} | programs]
         part_2_mapping(programs)
       end)
       |> Enum.max()

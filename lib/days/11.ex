@@ -40,11 +40,11 @@ defmodule D11 do
     program = %{program | input: [initial_input]}
 
     Stream.unfold({%{}, {{0, 0}, 0}, Program.run_blocking(program)}, fn
-      {_map, _info, {:ok, _program}} ->
+      {_map, _info, {:halt, _program}} ->
         nil
 
       {map, {{x, y} = location, direction},
-       {:halt, %Program{output: [turn | [color | _output]]} = program}} ->
+       {:block, %Program{output: [turn | [color | _output]]} = program}} ->
         # paint
         map = Map.put(map, location, color)
         # 0 = up, 1 = right, 2 = down, 3 = left
