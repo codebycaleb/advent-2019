@@ -1,0 +1,326 @@
+0000    SAVE           [8]
+0002    TJMP           [8]             325
+0005    FJMP             0              11
+0008    DATA             0
+0009    DATA             0
+0010    DATA             0
+0011    OUTP             1
+0013    OUTP             0
+0015    SAVE           [8]
+0017    MULI            -1             [8]            [10]
+0021    ADDI          [10]               1            [10]
+0025    OUTP          [10]
+0027    CEQI             0             [8]            [10]
+0031    OUTP          [10]
+0033    ADDI             0             [8]            [28]
+0037    MULI           [3]             [7]            [10]
+0041    MULI        [1109]             [3]            [10]
+0045    MULI         [102]             [0]            [10]
+0049    MULI        [1005]            [12]            [10]
+0053    SAVE           [8]
+0055    MULI            -1             [8]            [10]
+0059    ADDI             1            [10]            [10]
+0063    OUTP          [10]
+0065    CEQI           [8]               0            [10]
+0069    OUTP          [10]
+0071    ADDI             0             [8]            [67]
+0075    MULI         [109]            [12]            [10]
+0079    ADDI        [1003]            [15]            [10]
+0083    SAVE           [8]
+0085    MULI           [8]              -1            [10]
+0089    ADDI          [10]               1            [10]
+0093    OUTP          [10]
+0095    CEQI             1             [8]            [10]
+0099    OUTP          [10]
+0101    ADDI             0             [8]            [96]
+0105    SAVE           [8]
+0107    MULI            -1             [8]            [10]
+0111    ADDI             1            [10]            [10]
+0115    OUTP          [10]
+0117    CEQI           [8]               0            [10]
+0121    OUTP          [10]
+0123    MULI           [8]               1           [119]
+0127    SAVE           [8]
+0129    MULI            -1             [8]            [10]
+0133    ADDI          [10]               1            [10]
+0137    OUTP          [10]
+0139    CEQI           [8]               0            [10]
+0143    OUTP          [10]
+0145    ADDI             0             [8]           [141]
+0149    SAVE           [8]
+0151    MULI           [8]              -1            [10]
+0155    ADDI             1            [10]            [10]
+0159    OUTP          [10]
+0161    CEQI             0             [8]            [10]
+0165    OUTP          [10]
+0167    ADDI           [8]               0           [162]
+0171    ADDI         [106]            [17]            [10]
+0175    FJMP           [0]              52
+0178    FJMP           [0]              73
+0181    SAVE           [8]
+0183    MULI            -1             [8]            [10]
+0187    ADDI          [10]               1            [10]
+0191    OUTP          [10]
+0193    CEQI             1             [8]            [10]
+0197    OUTP          [10]
+0199    ADDI           [8]               0           [194]
+0203    FJMP           [0]              97
+0206    ADDI        [1004]             [6]            [10]
+0210    FJMP           [0]              32
+0213    MULI           [8]            [20]            [10]
+0217    SAVE           [8]
+0219    MULI            -1             [8]            [10]
+0223    ADDI             1            [10]            [10]
+0227    OUTP          [10]
+0229    CEQI           [8]               1            [10]
+0233    OUTP          [10]
+0235    MULI             1             [8]           [231]
+0239    ADDI           [1]            [15]            [10]
+0243    FJMP           [0]              21
+0246    ADDI           [6]            [17]            [10]
+0250    MULI        [1005]             [8]            [10]
+0254    SAVE           [8]
+0256    MULI            -1             [8]            [10]
+0260    ADDI             1            [10]            [10]
+0264    OUTP          [10]
+0266    CEQI             1             [8]            [10]
+0270    OUTP          [10]
+0272    MULI             1             [8]           [267]
+0276    MULI        [1007]            [10]            [10]
+0280    SAVE           [8]
+0282    MULI           [8]              -1            [10]
+0286    ADDI          [10]               1            [10]
+0290    OUTP          [10]
+0292    CEQI           [8]               1            [10]
+0296    OUTP          [10]
+0298    MULI             1             [8]           [294]
+0302    FJMP           [0]              74
+0305    MULI        [1003]             [2]            [10]
+0309    ADDI         [107]             [1]            [10]
+0313    ADDI             1             [9]             [9]
+0317    CLTI           [9]            1042            [10]
+0321    TJMP          [10]              15
+0324    HALT
+0325    AJRP           647
+0327    OUTP             0
+0329    OUTP             1
+0331    ADDI    936333018008             0        [RP + 1]
+0335    ADDI           342               0        [RP - 0]
+0339    FJMP             0             446
+0342    MULI    937121129228             1        [RP + 1]
+0346    ADDI             0             353        [RP - 0]
+0350    TJMP             1             446
+0353    SAVE          [10]
+0355    OUTP             0
+0357    OUTP             1
+0359    SAVE          [10]
+0361    OUTP             0
+0363    OUTP             0
+0365    SAVE          [10]
+0367    OUTP             0
+0369    OUTP             1
+0371    SAVE          [10]
+0373    OUTP             0
+0375    OUTP             1
+0377    SAVE          [10]
+0379    OUTP             0
+0381    OUTP             0
+0383    SAVE          [10]
+0385    OUTP             0
+0387    OUTP             1
+0389    ADDI             0      209383001255      [RP + 1]
+0393    MULI           400               1        [RP - 0]
+0397    FJMP             0             446
+0400    ADDI             0      28994371675       [RP + 1]
+0404    ADDI           411               0        [RP - 0]
+0408    TJMP             1             446
+0411    SAVE          [10]
+0413    OUTP             0
+0415    OUTP             0
+0417    SAVE          [10]
+0419    OUTP             0
+0421    OUTP             0
+0423    ADDI    867961824000             0        [RP + 1]
+0427    ADDI             0             434        [RP - 0]
+0431    FJMP             0             446
+0434    MULI             1      983925674344      [RP + 1]
+0438    ADDI             0             445        [RP - 0]
+0442    FJMP             0             446
+0445    HALT
+0446    AJRP             2
+0448    ADDI      [RP - 1]               0        [RP + 1]
+0452    MULI            40               1        [RP + 2]
+0456    ADDI           477               0        [RP + 3]
+0460    MULI           467               1        [RP - 0]
+0464    FJMP             0             510
+0467    AJRP            -2
+0469    FJMP             0        [RP - 0]
+0472    DATA             0
+0473    ADDI           [0]             [0]             [1]
+0477    AJRP             2
+0479    SAVE          [10]
+0481    OUTP      [RP - 1]
+0483    ADDI         [472]             473           [488]
+0487    OUTP           [0]
+0489    ADDI         [472]               1           [472]
+0493    CEQI             4           [472]            [10]
+0497    FJMP          [10]             504
+0500    ADDI             0               0           [472]
+0504    AJRP            -2
+0506    FJMP             0        [RP - 0]
+0509    DATA             0
+0510    AJRP             4
+0512    ADDI      [RP - 1]               0           [509]
+0516    CLTI      [RP - 3]               0            [10]
+0520    FJMP          [10]             527
+0523    MULI             1               0        [RP - 3]
+0527    MULI      [RP - 3]               1        [RP + 1]
+0531    ADDI      [RP - 2]               0        [RP + 2]
+0535    MULI             1               1        [RP + 3]
+0539    MULI             1             546        [RP - 0]
+0543    FJMP             0             551
+0546    AJRP            -4
+0548    TJMP             1        [RP - 0]
+0551    AJRP             5
+0553    CLTI      [RP - 3]               1            [10]
+0557    FJMP          [10]             574
+0560    CLTI      [RP - 4]        [RP - 2]            [10]
+0564    FJMP          [10]             574
+0567    ADDI             0        [RP - 4]        [RP - 4]
+0571    TJMP             1             642
+0574    MULI      [RP - 4]               1        [RP + 1]
+0578    ADDI      [RP - 3]              -1        [RP + 2]
+0582    MULI      [RP - 2]               2        [RP + 3]
+0586    ADDI             0             593        [RP - 0]
+0590    TJMP             1             551
+0593    MULI             1        [RP + 1]        [RP - 4]
+0597    ADDI             1               0        [RP - 1]
+0601    CLTI      [RP - 4]        [RP - 2]            [10]
+0605    FJMP          [10]             612
+0608    MULI             1               0        [RP - 1]
+0612    MULI      [RP - 2]        [RP - 1]        [RP - 2]
+0616    CLTI             0        [RP - 3]            [10]
+0620    FJMP          [10]             634
+0623    ADDI      [RP - 1]               0        [RP + 1]
+0627    ADDI           634               0        [RP - 0]
+0631    TJMP             1           [509]
+0634    MULI      [RP - 2]              -1        [RP - 2]
+0638    ADDI      [RP - 4]        [RP - 2]        [RP - 4]
+0642    AJRP            -5
+0644    FJMP             0        [RP - 0]
+
+I spent a ton of time analyzing part 2 (begins at index 325) because I figured it was the part that would take the most time. Long story short, it uses the big numbers (index 331, 342, etc.) as a kind of complicated bitmask. The patterns goes something like this:
+
+Let's say the two numbers were represented as abcdef and ghijkl, where each letter is a bit (e.g. 42 is 101010, a=1, b=0, c=1, d=0, e=1, f=0).
+
+The bitmask is interpreted and displayed in a winding pattern as
+
+adehil
+bcfgjk
+
+It does this for all three pairs. The second one is reversed though because it goes something like
+
+ade
+bcf
+kjg
+lih
+mpq
+nor
+
+I spent a ton of time converting that into pure Elixir only to realize it didn't even shave off 10ms. When I filtered out part 2, I realized that the majority of time is spent in part 1, generating an amorphous map. After reading https://www.reddit.com/r/adventofcode/comments/e9lxtv/2019_day_11_excel_cred_to_the_creators_of_aoc/, I inspected my own input.
+
+I was confused at what u/pngipngi meant by the 10 initial values, but I discovered it after a bit. There's 10 CEQI calls in the first part, each comparing the value at index 8 (the program input) to a value of 0 or 1. If the values are equal, it outputs 1 (turn right); otherwise, it outputs 0 (turn left). The trick is, the next step is to write the current input to the current value being compared.
+
+For the first input, for example, we've entered 0 per the program instructions. The program is hardcoded to tell us to paint white and turn left (indexes 11 and 13). The next input will be 0 as well (we're on a blank canvas at this point). At index 15, 0 is saved to [8]. The next portion flips the input (0 to 1) and outputs it to tell us to paint that (this is what each section does). Finally, at index 27, we check 0 against our input (0). Since they're equal, it outputs 1 (turn right). At index 33, the input (0) is saved to [28] - the value to compare to the input _next time_. We come back here in 10 moves, since the instructions at index 317 and 321 jump us back to index 15. There are some inefficiencies added in here for obfuscation. I don't know if hacking together a slimmed down Intcode program will be that beneficial. 😬 But I'm gonna try it!
+
+0000	SAVE	       [8]
+0002	TJMP	       [8]	       325
+0005	FJMP	         0	        11
+0008	DATA	         0
+0009	DATA	         0
+0010	DATA	         0
+0011	OUTP	         1
+0013	OUTP	         0
+0015	SAVE	       [8]
+0017	MULI	        -1	       [8]	      [10]
+0021	ADDI	      [10]	         1	      [10]
+0025	OUTP	      [10]
+0027	CEQI	         0	       [8]	      [10]
+0031	OUTP	      [10]
+0033	ADDI	         0	       [8]	      [28]
+0037	SAVE	       [8]
+0039	MULI	        -1	       [8]	      [10]
+0043	ADDI	         1	      [10]	      [10]
+0047	OUTP	      [10]
+0049	CEQI	       [8]	         0	      [10]
+0053	OUTP	      [10]
+0055	ADDI	         0	       [8]	      [51]
+0059	SAVE	       [8]
+0061	MULI	       [8]	        -1	      [10]
+0065	ADDI	      [10]	         1	      [10]
+0069	OUTP	      [10]
+0071	CEQI	         1	       [8]	      [10]
+0075	OUTP	      [10]
+0077	ADDI	         0	       [8]	      [72]
+0081	SAVE	       [8]
+0083	MULI	        -1	       [8]	      [10]
+0087	ADDI	         1	      [10]	      [10]
+0091	OUTP	      [10]
+0093	CEQI	       [8]	         0	      [10]
+0097	OUTP	      [10]
+0099	MULI	       [8]	         1	     [95]
+0103	SAVE	       [8]
+0105	MULI	        -1	       [8]	      [10]
+0109	ADDI	      [10]	         1	      [10]
+0113	OUTP	      [10]
+0115	CEQI	       [8]	         0	      [10]
+0119	OUTP	      [10]
+0121	ADDI	         0	       [8]	     [117]
+0125	SAVE	       [8]
+0127	MULI	       [8]	        -1	      [10]
+0131	ADDI	         1	      [10]	      [10]
+0135	OUTP	      [10]
+0137	CEQI	         0	       [8]	      [10]
+0141	OUTP	      [10]
+0143	ADDI	       [8]	         0	     [138]
+0147	SAVE	       [8]
+0149	MULI	        -1	       [8]	      [10]
+0153	ADDI	      [10]	         1	      [10]
+0157	OUTP	      [10]
+0159	CEQI	         1	       [8]	      [10]
+0163	OUTP	      [10]
+0165	ADDI	       [8]	         0	     [160]
+0169	SAVE	       [8]
+0171	MULI	        -1	       [8]	      [10]
+0175	ADDI	         1	      [10]	      [10]
+0179	OUTP	      [10]
+0181	CEQI	       [8]	         1	      [10]
+0185	OUTP	      [10]
+0187	MULI	         1	       [8]	     [183]
+0191	SAVE	       [8]
+0193	MULI	        -1	       [8]	      [10]
+0197	ADDI	         1	      [10]	      [10]
+0201	OUTP	      [10]
+0203	CEQI	         1	       [8]	      [10]
+0207	OUTP	      [10]
+0209	MULI	         1	       [8]	     [204]
+0213	SAVE	       [8]
+0215	MULI	       [8]	        -1	      [10]
+0219	ADDI	      [10]	         1	      [10]
+0223	OUTP	      [10]
+0225	CEQI	       [8]	         1	      [10]
+0229	OUTP	      [10]
+0231	MULI	         1	       [8]	     [227]
+0235	FJMP	       [0]	        74
+0238	MULI	    [1003]	       [2]	      [10]
+0242	ADDI	     [107]	       [1]	      [10]
+0246	ADDI	         1	       [9]	       [9]
+0250	CLTI	       [9]	      1042	      [10]
+0254	TJMP	      [10]	        15
+0257	HALT
+
+Intcode: 3,8,1005,8,325,1106,0,11,0,0,0,104,1,104,0,3,8,102,-1,8,10,1001,10,1,10,4,10,108,0,8,10,4,10,101,0,8,28,3,8,102,-1,8,10,101,1,10,10,4,10,1008,8,0,10,4,10,101,0,8,51,3,8,1002,8,-1,10,1001,10,1,10,4,10,108,1,8,10,4,10,101,0,8,72,3,8,102,-1,8,10,101,1,10,10,4,10,1008,8,0,10,4,10,1002,8,1,95,3,8,102,-1,8,10,1001,10,1,10,4,10,1008,8,0,10,4,10,101,0,8,117,3,8,1002,8,-1,10,101,1,10,10,4,10,108,0,8,10,4,10,1001,8,0,138,3,8,102,-1,8,10,1001,10,1,10,4,10,108,1,8,10,4,10,1001,8,0,160,3,8,102,-1,8,10,101,1,10,10,4,10,1008,8,1,10,4,10,102,1,8,183,3,8,102,-1,8,10,101,1,10,10,4,10,108,1,8,10,4,10,102,1,8,204,3,8,1002,8,-1,10,1001,10,1,10,4,10,1008,8,1,10,4,10,102,1,8,227,1006,0,74,2,1003,2,10,1,107,1,10,101,1,9,9,1007,9,1042,10,1005,10,15,99
+
+Turns out: this cut off about 30ms when provided statically. About 25ish when run dynamically (by figuring out the initial state and replacing the proper values above - see the a,b,c,... portion of 11.ex) It's probably more efficient to convert this part to pure Elixir, but I'm trying to stick with running Intcode for Intcode days!
+
+Another speed gain: switching from using Stream.unfold and then picking the last option (which iterates through the whole list) to using a function recursively added another 20ms of savings!

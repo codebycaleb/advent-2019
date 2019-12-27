@@ -36,33 +36,33 @@ defmodule D11 do
 
   @behaviour Day
 
+  def run_program(_program, :halt, map, _location, _direction), do: map
+
+  def run_program(program, :block, map, {x, y}, direction) do
+    %Program{output: [turn | [color | _output]]} = program
+    # paint
+    map = Map.put(map, {x, y}, color)
+    # 0 = up, 1 = right, 2 = down, 3 = left
+    direction = rem(direction + turn * 2 + 3, 4)
+
+    location =
+      case direction do
+        0 -> {x, y - 1}
+        1 -> {x + 1, y}
+        2 -> {x, y + 1}
+        3 -> {x - 1, y}
+      end
+
+    current = Map.get(map, location, 0)
+    {status, program} = Program.run_blocking(%{program | input: [current]})
+
+    run_program(program, status, map, location, direction)
+  end
+
   def run_program(program, initial_input) do
     program = %{program | input: [initial_input]}
-
-    Stream.unfold({%{}, {{0, 0}, 0}, Program.run_blocking(program)}, fn
-      {_map, _info, {:halt, _program}} ->
-        nil
-
-      {map, {{x, y} = location, direction},
-       {:block, %Program{output: [turn | [color | _output]]} = program}} ->
-        # paint
-        map = Map.put(map, location, color)
-        # 0 = up, 1 = right, 2 = down, 3 = left
-        direction = rem(direction + turn * 2 + 3, 4)
-
-        location =
-          case direction do
-            0 -> {x, y - 1}
-            1 -> {x + 1, y}
-            2 -> {x, y + 1}
-            3 -> {x - 1, y}
-          end
-
-        current = Map.get(map, location, 0)
-        program = %{program | input: [current]}
-        {map, {map, {location, direction}, Program.run_blocking(program)}}
-    end)
-    |> Enum.at(-1)
+    {:block, program} = Program.run_blocking(program)
+    run_program(program, :block, %{}, {0, 0}, 0)
   end
 
   def solve(input) do
@@ -70,8 +70,34 @@ defmodule D11 do
 
     program = Program.new(input)
 
+    [a, b, c, d, e, f, g, h, i, j] =
+      input
+      |> Enum.with_index()
+      |> Enum.filter(fn {v, _i} -> v == 108 or v == 1008 end)
+      |> Enum.map(fn {_v, i} -> i end)
+      |> Enum.sort()
+      |> Enum.drop(-1)
+      |> Enum.map(fn i -> Enum.slice(input, i + 1, 2) end)
+      |> Enum.map(fn [a, b] -> if a == 8, do: b, else: a end)
+
+    part_1_hack =
+      "3,8,1005,8,325,1106,0,11,0,0,0,104,1,104,0,3,8,102,-1,8,10,1001,10,1,10,4,10,108,#{a},8,10,4,10,101,0,8,28,3,8,102,-1,8,10,101,1,10,10,4,10,1008,8,#{
+        b
+      },10,4,10,101,0,8,51,3,8,1002,8,-1,10,1001,10,1,10,4,10,108,#{c},8,10,4,10,101,0,8,72,3,8,102,-1,8,10,101,1,10,10,4,10,1008,8,#{
+        d
+      },10,4,10,1002,8,1,95,3,8,102,-1,8,10,1001,10,1,10,4,10,1008,8,#{e},10,4,10,101,0,8,117,3,8,1002,8,-1,10,101,1,10,10,4,10,108,#{
+        f
+      },8,10,4,10,1001,8,0,138,3,8,102,-1,8,10,1001,10,1,10,4,10,108,#{g},8,10,4,10,1001,8,0,160,3,8,102,-1,8,10,101,1,10,10,4,10,1008,8,#{
+        h
+      },10,4,10,102,1,8,183,3,8,102,-1,8,10,101,1,10,10,4,10,108,#{i},8,10,4,10,102,1,8,204,3,8,1002,8,-1,10,1001,10,1,10,4,10,1008,8,#{
+        j
+      },10,4,10,102,1,8,227,1006,0,74,2,1003,2,10,1,107,1,10,101,1,9,9,1007,9,1042,10,1005,10,15,99"
+      |> Utils.to_ints()
+
+    part_1_hacked = Program.hack(program, 0, part_1_hack)
+
     part_1 =
-      program
+      part_1_hacked
       |> run_program(0)
       |> map_size
 
