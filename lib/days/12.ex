@@ -53,7 +53,22 @@ defmodule D12 do
     end)
   end
 
+  def add_vectors([a], [x]), do: [a + x]
+  def add_vectors([a, b], [x, y]), do: [a + x, b + y]
   def add_vectors([a, b, c], [x, y, z]), do: [a + x, b + y, c + z]
+
+  def calc_gravity([[ax], _], [[bx], _]) do
+    [
+      if(ax > bx, do: -1, else: if(ax < bx, do: 1, else: 0))
+    ]
+  end
+
+  def calc_gravity([[ax, ay], _], [[bx, by], _]) do
+    [
+      if(ax > bx, do: -1, else: if(ax < bx, do: 1, else: 0)),
+      if(ay > by, do: -1, else: if(ay < by, do: 1, else: 0))
+    ]
+  end
 
   def calc_gravity([[ax, ay, az], _], [[bx, by, bz], _]) do
     [
@@ -63,19 +78,13 @@ defmodule D12 do
     ]
   end
 
-  def apply_gravity(state) do
+  def apply_gravity_then_velocity(state) do
     Enum.map(state, fn [position, velocity] = object ->
-      [
-        position,
+      velocity =
         Enum.map(state, &calc_gravity(object, &1))
         |> Enum.reduce(&add_vectors/2)
         |> add_vectors(velocity)
-      ]
-    end)
-  end
 
-  def apply_velocity(state) do
-    Enum.map(state, fn [position, velocity] ->
       [add_vectors(position, velocity), velocity]
     end)
   end
@@ -99,39 +108,70 @@ defmodule D12 do
   end
 
   def step(state) do
-    state
-    |> apply_gravity()
-    |> apply_velocity()
+    apply_gravity_then_velocity(state)
   end
+
+  def part_2(state, 0, 0, 0, steps) do
+    state = step(state)
+    steps = steps + 1
+
+    case state do
+      [[_, [0 | _]], [_, [0 | _]], [_, [0 | _]], [_, [0 | _]]] ->
+        state = Enum.map(state, fn [[_x, y, z], [_a, b, c]] -> [[y, z], [b, c]] end)
+        part_2(state, 0, 0, steps, steps)
+
+      [[_, [_, 0, _]], [_, [_, 0, _]], [_, [_, 0, _]], [_, [_, 0, _]]] ->
+        state = Enum.map(state, fn [[x, _y, z], [a, _b, c]] -> [[x, z], [a, c]] end)
+        part_2(state, 0, 0, steps, steps)
+
+      [[_, [_, _, 0]], [_, [_, _, 0]], [_, [_, _, 0]], [_, [_, _, 0]]] ->
+        state = Enum.map(state, fn [[x, y, _z], [a, b, _c]] -> [[x, y], [a, b]] end)
+        part_2(state, 0, 0, steps, steps)
+
+      _ ->
+        part_2(state, 0, 0, 0, steps)
+    end
+  end
+
+  def part_2(state, 0, 0, z, steps) do
+    state = step(state)
+    steps = steps + 1
+
+    case state do
+      [[_, [0 | _]], [_, [0 | _]], [_, [0 | _]], [_, [0 | _]]] ->
+        state = Enum.map(state, fn [[_x, y], [_a, b]] -> [[y], [b]] end)
+        part_2(state, 0, z, steps, steps)
+
+      [[_, [_, 0]], [_, [_, 0]], [_, [_, 0]], [_, [_, 0]]] ->
+        state = Enum.map(state, fn [[x, _y], [a, _c]] -> [[x], [a]] end)
+        part_2(state, 0, z, steps, steps)
+
+      _ ->
+        part_2(state, 0, 0, z, steps)
+    end
+  end
+
+  def part_2(state, 0, y, z, steps) do
+    state = step(state)
+    steps = steps + 1
+
+    case state do
+      [[_, [0]], [_, [0]], [_, [0]], [_, [0]]] ->
+        part_2(y, z, steps)
+
+      _ ->
+        part_2(state, 0, y, z, steps)
+    end
+  end
+
+  def part_2(x, y, z), do: lcm([x, y, z]) * 2
 
   def solve(input) do
     state = parse(input)
 
     part_1 = 1..1000 |> Enum.reduce(state, fn _, state -> step(state) end) |> calc_score
 
-    part_2 =
-      1..1_000_000
-      |> Enum.reduce_while([state, 0, 0, 0], fn
-        steps, [state, x, y, z] when x == 0 or y == 0 or z == 0 ->
-          state = step(state)
-
-          case [state, x, y, z] do
-            [[[_, [0 | _]], [_, [0 | _]], [_, [0 | _]], [_, [0 | _]]], 0, _, _] ->
-              {:cont, [state, steps, y, z]}
-
-            [[[_, [_, 0, _]], [_, [_, 0, _]], [_, [_, 0, _]], [_, [_, 0, _]]], _, 0, _] ->
-              {:cont, [state, x, steps, z]}
-
-            [[[_, [_, _, 0]], [_, [_, _, 0]], [_, [_, _, 0]], [_, [_, _, 0]]], _, _, 0] ->
-              {:cont, [state, x, y, steps]}
-
-            _ ->
-              {:cont, [state, x, y, z]}
-          end
-
-        _steps, [_state, x, y, z] ->
-          {:halt, lcm([x, y, z]) * 2}
-      end)
+    part_2 = part_2(state, 0, 0, 0, 0)
 
     {
       part_1,
