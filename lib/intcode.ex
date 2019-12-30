@@ -79,38 +79,34 @@ defmodule Program do
   end
 
   def less_than(program, a, b, c) do
-    case param_value(program, a) < param_value(program, b) do
-      true ->
-        %{
-          program
-          | state: Map.put(program.state, param_index(program, c), 1),
-            pointer: program.pointer + 4
-        }
-
-      false ->
-        %{
-          program
-          | state: Map.put(program.state, param_index(program, c), 0),
-            pointer: program.pointer + 4
-        }
+    if param_value(program, a) < param_value(program, b) do
+      %{
+        program
+        | state: Map.put(program.state, param_index(program, c), 1),
+          pointer: program.pointer + 4
+      }
+    else
+      %{
+        program
+        | state: Map.put(program.state, param_index(program, c), 0),
+          pointer: program.pointer + 4
+      }
     end
   end
 
   def equals(program, a, b, c) do
-    case param_value(program, a) == param_value(program, b) do
-      true ->
-        %{
-          program
-          | state: Map.put(program.state, param_index(program, c), 1),
-            pointer: program.pointer + 4
-        }
-
-      false ->
-        %{
-          program
-          | state: Map.put(program.state, param_index(program, c), 0),
-            pointer: program.pointer + 4
-        }
+    if param_value(program, a) == param_value(program, b) do
+      %{
+        program
+        | state: Map.put(program.state, param_index(program, c), 1),
+          pointer: program.pointer + 4
+      }
+    else
+      %{
+        program
+        | state: Map.put(program.state, param_index(program, c), 0),
+          pointer: program.pointer + 4
+      }
     end
   end
 
@@ -139,25 +135,26 @@ defmodule Program do
 
   def get_arity(opcode), do: :erlang.fun_info(@opcodes[opcode])[:arity] - 1
 
-  def fill_modes(modes, arity) do
-    diff = arity - length(modes)
-
-    case diff do
-      x when x <= 0 -> modes
-      1 -> [0 | modes]
-      2 -> [0 | [0 | modes]]
-      3 -> [0 | [0 | [0 | modes]]]
-      x -> Enum.map(1..x, fn _ -> 0 end) ++ modes
-    end
-  end
-
   def parse_modes(opcode, encoded_modes) do
     arity = get_arity(opcode)
 
-    encoded_modes
-    |> Integer.digits()
-    |> fill_modes(arity)
-    |> Enum.reverse()
+    case arity do
+      3 ->
+        [
+          rem(encoded_modes, 10),
+          rem(div(encoded_modes, 10), 10),
+          rem(div(encoded_modes, 100), 10)
+        ]
+
+      2 ->
+        [rem(encoded_modes, 10), rem(div(encoded_modes, 10), 10)]
+
+      1 ->
+        [rem(encoded_modes, 10)]
+
+      0 ->
+        []
+    end
   end
 
   def parse_operation(operation) do
