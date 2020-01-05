@@ -26,6 +26,13 @@ defmodule D15 do
   You don't know anything about the area around the repair droid, but you can figure it out by watching the status codes.
 
   What is the fewest number of movement commands required to move the repair droid from its starting position to the location of the oxygen system?
+
+  --- Part Two ---
+  You quickly repair the oxygen system; oxygen gradually fills the area.
+
+  Oxygen starts in the location containing the repaired oxygen system. It takes one minute for oxygen to spread to all open locations that are adjacent to a location that already contains oxygen. Diagonal locations are not adjacent.
+
+  Use the repair droid to get a complete map of the area. How many minutes will it take to fill with oxygen?
   """
 
   @behaviour Day

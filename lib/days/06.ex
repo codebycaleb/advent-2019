@@ -14,6 +14,13 @@ defmodule D6 do
   Whenever A orbits B and B orbits C, then A indirectly orbits C. This chain can be any number of objects long: if A orbits B, B orbits C, and C orbits D, then A indirectly orbits D.
 
   What is the total number of direct and indirect orbits in your map data?
+
+  --- Part Two ---
+  Now, you just need to figure out how many orbital transfers you (YOU) need to take to get to Santa (SAN).
+
+  You start at the object YOU are orbiting; your destination is the object SAN is orbiting. An orbital transfer lets you move from any object to an object orbiting or orbited by that object.
+
+  What is the minimum number of orbital transfers required to move from the object YOU are orbiting to the object SAN is orbiting? (Between the objects they are orbiting - not between YOU and SAN.)
   """
 
   @behaviour Day

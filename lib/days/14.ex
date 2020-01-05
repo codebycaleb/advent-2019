@@ -13,6 +13,11 @@ defmodule D14 do
   Each reaction gives specific quantities for its inputs and output; reactions cannot be partially run, so only whole integer multiples of these quantities can be used. (It's okay to have leftover chemicals when you're done, though.) For example, the reaction 1 A, 2 B, 3 C => 2 D means that exactly 2 units of chemical D can be produced by consuming exactly 1 A, 2 B and 3 C. You can run the full reaction as many times as necessary; for example, you could produce 10 D by consuming 5 A, 10 B, and 15 C.
 
   Given the list of reactions in your puzzle input, what is the minimum amount of ORE required to produce exactly 1 FUEL?
+
+  --- Part Two ---
+  After collecting ORE for a while, you check your cargo hold: 1 trillion (1000000000000) units of ORE.
+
+  Given 1 trillion ORE, what is the maximum amount of FUEL you can produce?
   """
 
   @behaviour Day
