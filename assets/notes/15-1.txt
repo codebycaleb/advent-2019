@@ -1,0 +1,1482 @@
+================================================================
+============================MODIFIED============================
+================================================================
+
+0000    SAVE        [A]
+0002    CEQI        [A]               1          [B]
+0006    TJMP        [B]              31
+0009    CEQI        [A]               2          [B]
+0013    TJMP        [B]              58
+0016    CEQI        [A]               3          [B]
+0020    TJMP        [B]              81
+0023    CEQI        [A]               4          [B]
+0027    TJMP        [B]             104
+0030    HALT
+0031    MULI        [C]               1          [D]
+0035    ADDI             0          [E]          [F]
+0039    ADDI        [G]              -1          [H]
+0043    CEQI        [I]               0          [J]
+0047    MULI            -1          [J]          [B]
+0051    ADDI        [K]          [B]          [L]
+0055    FJMP             0             124
+0058    ADDI             0          [C]          [D]
+0062    ADDI             0          [E]          [F]
+0066    ADDI        [G]               1          [H]
+0070    CEQI        [I]               0          [J]
+0074    ADDI        [K]          [I]          [L]
+0078    TJMP             1             124
+0081    ADDI        [C]              -1          [D]
+0085    CEQI        [E]               0          [F]
+0089    MULI             1          [G]          [H]
+0093    ADDI        [I]               0          [J]
+0097    ADDI        [K]               0          [L]
+0101    FJMP             0             124
+0104    ADDI        [C]               1          [D]
+0108    CEQI        [E]               0          [F]
+0112    MULI        [G]               1          [H]
+0116    MULI        [I]               1          [J]
+0120    ADDI             0          [K]          [L]
+0124    FJMP        [D]             217
+0127    FJMP        [H]             217
+0130    CEQI        [D]              40          [B]
+0134    TJMP        [B]             217
+0137    CEQI        [H]              40          [B]
+0141    TJMP        [B]             217
+0144    CEQI        [D]              33          [B]
+0148    FJMP        [B]             165
+0151    CEQI        [H]              35          [B]
+0155    FJMP        [B]             165
+0158    MULI             2               1          [M]
+0162    TJMP             1             224
+0165    MULI        [F]          [J]          [B]
+0169    FJMP        [B]             179
+0172    ADDI             1               0          [M]
+0176    TJMP             1             224
+0179    ADDI        [F]          [J]          [B]
+0183    FJMP        [B]             217
+0186    ADDI        [L]          [J]          [B]
+0190    ADDI        [B]              -1          [B]
+0194    MULI        [B]              39          [B]
+0198    ADDI        [B]          [D]          [B]
+0202    ADDI            -1          [B]          [B]
+0206    ADDI           252          [B]           [211]
+0210    CLTI           [0]              58          [M]
+0214    FJMP             0             224
+0217    ADDI             0               0          [M]
+0221    FJMP             0             224
+0224    FJMP        [M]             247
+0227    ADDI             0          [D]          [C]
+0231    ADDI             0          [H]          [G]
+0235    ADDI        [F]               0          [E]
+0239    ADDI        [J]               0          [I]
+0243    ADDI        [L]               0          [K]
+0247    OUTP        [M]
+0249    TJMP             1               0
+0252    DATA            33
+0253    DATA            14
+0254    DATA            68
+0255    DATA            54
+0256    DATA            69
+0257    DATA            24
+0258    AJRP          [59]
+0260    MULI           [7]            [68]            [23]
+0264    DATA            97
+0265    DATA            53
+0266    DATA            74
+0267    DATA            21
+0268    DATA            32
+0269    DATA            37
+0270    DATA            55
+0271    DATA            83
+0272    SAVE          [26]
+0274    DATA            85
+0275    DATA            52
+0276    DATA            38
+0277    DATA            10
+0278    DATA            81
+0279    DATA            19
+0280    DATA            82
+0281    DATA            47
+0282    DATA            70
+0283    DATA            27
+0284    DATA            60
+0285    DATA            32
+0286    DATA            98
+0287    DATA            40
+0288    DATA            46
+0289    DATA            75
+0290    DATA            17
+0291    DATA            66
+0292    DATA            11
+0293    DATA            92
+0294    DATA            30
+0295    DATA            84
+0296    DATA            90
+0297    DATA            36
+0298    DATA            71
+0299    FJMP          [82]            [95]
+0302    DATA            45
+0303    DATA            23
+0304    DATA            75
+0305    DATA            49
+0306    DATA            38
+0307    DATA            71
+0308    DATA            72
+0309    MULI          [72]            [26]            [64]
+0313    DATA            93
+0314    DATA            53
+0315    DATA            68
+0316    DATA            90
+0317    DATA            42
+0318    SAVE          [64]
+0320    SAVE          [66]
+0322    DATA            21
+0323    DATA            84
+0324    DATA            47
+0325    DATA            15
+0326    DATA            87
+0327    DATA            60
+0328    DATA            18
+0329    DATA            96
+0330    DATA            30
+0331    DATA            14
+0332    DATA            54
+0333    HALT
+0334    DATA            48
+0335    DATA            12
+0336    DATA            63
+0337    DATA            62
+0338    DATA            86
+0339    DATA            41
+0340    DATA            56
+0341    DATA            79
+0342    DATA            50
+0343    HALT
+0344    DATA            38
+0345    DATA            68
+0346    DATA            16
+0347    DATA            15
+0348    DATA            69
+0349    DATA            53
+0350    DATA            90
+0351    DATA            59
+0352    DATA            28
+0353    DATA            41
+0354    CLTI          [94]            [47]            [74]
+0358    DATA            68
+0359    DATA            56
+0360    DATA            43
+0361    DATA            70
+0362    DATA            22
+0363    DATA            55
+0364    DATA            72
+0365    DATA            87
+0366    DATA            28
+0367    DATA            50
+0368    DATA            28
+0369    DATA            55
+0370    DATA            98
+0371    DATA            97
+0372    DATA            22
+0373    DATA            64
+0374    DATA            63
+0375    DATA            21
+0376    DATA            28
+0377    CEQI          [87]            [91]            [39]
+0381    ADDI          [93]            [52]            [95]
+0385    DATA            96
+0386    DATA            68
+0387    DATA            13
+0388    DATA            24
+0389    DATA            64
+0390    DATA            14
+0391    DATA            65
+0392    DATA            78
+0393    DATA            89
+0394    DATA            34
+0395    DATA            85
+0396    DATA            92
+0397    DATA            35
+0398    DATA            57
+0399    DATA            83
+0400    DATA            70
+0401    DATA            21
+0402    DATA            75
+0403    DATA            43
+0404    DATA            24
+0405    DATA            76
+0406    DATA            74
+0407    DATA            11
+0408    DATA            90
+0409    DATA            55
+0410    DATA            74
+0411    DATA            22
+0412    DATA            63
+0413    AJRP          [95]
+0415    DATA            64
+0416    DATA            79
+0417    MULI          [78]            [30]            [74]
+0421    DATA            75
+0422    DATA            33
+0423    DATA            23
+0424    DATA            47
+0425    DATA            93
+0426    DATA            93
+0427    DATA            56
+0428    DATA            77
+0429    DATA            48
+0430    DATA            72
+0431    DATA            35
+0432    DATA            42
+0433    DATA            82
+0434    DATA            36
+0435    DATA            25
+0436    DATA            20
+0437    DATA            81
+0438    DATA            15
+0439    DATA            56
+0440    DATA            95
+0441    DATA            96
+0442    DATA            33
+0443    DATA            94
+0444    DATA            53
+0445    DATA            46
+0446    DATA            64
+0447    DATA            31
+0448    DATA            46
+0449    DATA            98
+0450    DATA            43
+0451    DATA            40
+0452    DATA            98
+0453    DATA            48
+0454    FJMP          [71]            [44]
+0457    DATA            83
+0458    CLTI          [56]            [64]            [92]
+0462    DATA            72
+0463    DATA            24
+0464    DATA            29
+0465    DATA            35
+0466    DATA            37
+0467    DATA            22
+0468    DATA            63
+0469    DATA            21
+0470    DATA            28
+0471    DATA            68
+0472    DATA            75
+0473    DATA            31
+0474    DATA            77
+0475    DATA            28
+0476    DATA            96
+0477    DATA            71
+0478    DATA            35
+0479    DATA            11
+0480    DATA            66
+0481    DATA            55
+0482    DATA            87
+0483    DATA            17
+0484    DATA            64
+0485    TJMP          [53]            [95]
+0488    DATA            79
+0489    DATA            52
+0490    DATA            95
+0491    DATA            16
+0492    DATA            78
+0493    DATA            80
+0494    DATA            47
+0495    DATA            51
+0496    DATA            90
+0497    DATA            68
+0498    DATA            63
+0499    ADDI          [10]            [99]            [79]
+0503    DATA            80
+0504    DATA            30
+0505    DATA            97
+0506    DATA            32
+0507    DATA            82
+0508    DATA            27
+0509    DATA            62
+0510    DATA            49
+0511    ADDI          [61]            [93]            [71]
+0515    CLTI          [39]            [93]            [40]
+0519    DATA            75
+0520    DATA            50
+0521    DATA            94
+0522    DATA            68
+0523    DATA            22
+0524    SAVE          [44]
+0526    TJMP          [93]            [55]
+0529    DATA            53
+0530    DATA            92
+0531    DATA            92
+0532    DATA            16
+0533    DATA            30
+0534    DATA            94
+0535    DATA            17
+0536    DATA            15
+0537    DATA            77
+0538    DATA            55
+0539    DATA            76
+0540    DATA            25
+0541    DATA            97
+0542    DATA            53
+0543    DATA            73
+0544    DATA            96
+0545    DATA            54
+0546    DATA            98
+0547    DATA            39
+0548    DATA            73
+0549    DATA            75
+0550    TJMP          [56]            [78]
+0553    DATA            81
+0554    DATA            48
+0555    DATA            64
+0556    DATA            73
+0557    DATA            97
+0558    DATA            25
+0559    DATA            71
+0560    DATA            91
+0561    DATA            28
+0562    DATA            56
+0563    DATA            90
+0564    DATA            53
+0565    DATA            75
+0566    DATA            28
+0567    DATA            79
+0568    DATA            63
+0569    DATA            35
+0570    DATA            48
+0571    DATA            81
+0572    CEQI          [28]            [95]            [73]
+0576    DATA            52
+0577    DATA            30
+0578    DATA            29
+0579    DATA            88
+0580    OUTP          [94]
+0582    MULI          [36]            [92]            [86]
+0586    DATA            87
+0587    AJRP          [34]
+0589    DATA            92
+0590    DATA            98
+0591    DATA            30
+0592    HALT
+0593    DATA            40
+0594    DATA            37
+0595    DATA            87
+0596    DATA            36
+0597    DATA            49
+0598    DATA            34
+0599    HALT
+0600    DATA            72
+0601    DATA            38
+0602    DATA            54
+0603    DATA            71
+0604    ADDI          [74]            [41]            [20]
+0608    DATA            72
+0609    DATA            40
+0610    DATA            90
+0611    DATA            89
+0612    FJMP           [1]            [74]
+0615    DATA            50
+0616    DATA            63
+0617    DATA            47
+0618    DATA            98
+0619    DATA            79
+0620    DATA            45
+0621    DATA            90
+0622    DATA            78
+0623    DATA            34
+0624    DATA            10
+0625    DATA            78
+0626    MULI          [72]            [94]            [56]
+0630    DATA            30
+0631    DATA            86
+0632    DATA            45
+0633    DATA            82
+0634    DATA            74
+0635    DATA            51
+0636    DATA            73
+0637    DATA            88
+0638    DATA            36
+0639    DATA            65
+0640    DATA            30
+0641    DATA            63
+0642    CEQI          [17]            [68]            [92]
+0646    DATA            13
+0647    DATA            93
+0648    SAVE          [77]
+0650    DATA            72
+0651    DATA            20
+0652    DATA            90
+0653    DATA            63
+0654    DATA            37
+0655    DATA            86
+0656    DATA            77
+0657    DATA            17
+0658    DATA            95
+0659    DATA            56
+0660    DATA            57
+0661    DATA            61
+0662    DATA            77
+0663    DATA            74
+0664    DATA            19
+0665    DATA            18
+0666    DATA            70
+0667    DATA            34
+0668    DATA            93
+0669    DATA            23
+0670    DATA            96
+0671    CEQI          [93]             [1]            [79]
+0675    DATA            81
+0676    DATA            66
+0677    DATA            27
+0678    DATA            38
+0679    MULI          [12]            [31]            [81]
+0683    DATA            43
+0684    DATA            48
+0685    DATA            93
+0686    DATA            67
+0687    DATA            60
+0688    DATA            17
+0689    DATA            93
+0690    DATA            44
+0691    HALT
+0692    DATA            39
+0693    DATA            72
+0694    DATA            35
+0695    DATA            92
+0696    HALT
+0697    DATA            42
+0698    DATA            46
+0699    DATA            79
+0700    DATA            60
+0701    DATA            22
+0702    DATA            56
+0703    DATA            75
+0704    DATA            60
+0705    DATA            95
+0706    DATA            23
+0707    DATA            84
+0708    DATA            33
+0709    DATA            67
+0710    DATA            16
+0711    DATA            16
+0712    DATA            36
+0713    DATA            55
+0714    DATA            39
+0715    DATA            83
+0716    DATA            46
+0717    DATA            75
+0718    DATA            80
+0719    DATA            79
+0720    MULI          [63]            [25]            [60]
+0724    DATA            20
+0725    OUTP          [39]
+0727    DATA            97
+0728    DATA            20
+0729    DATA            90
+0730    OUTP          [30]
+0732    DATA            86
+0733    AJRP           [7]
+0735    DATA            90
+0736    DATA            80
+0737    DATA            49
+0738    DATA            20
+0739    DATA            98
+0740    DATA            29
+0741    DATA            83
+0742    DATA            51
+0743    DATA            46
+0744    DATA            92
+0745    DATA            27
+0746    DATA            65
+0747    DATA            34
+0748    DATA            57
+0749    DATA            61
+0750    DATA            10
+0751    DATA            94
+0752    DATA            84
+0753    DATA            90
+0754    SAVE          [51]
+0756    DATA            64
+0757    TJMP          [37]            [19]
+0760    DATA            51
+0761    DATA            69
+0762    DATA            73
+0763    DATA            39
+0764    DATA            96
+0765    HALT
+0766    DATA            24
+0767    DATA            34
+0768    DATA            66
+0769    DATA            21
+0770    DATA            76
+0771    DATA            81
+0772    DATA            33
+0773    DATA            85
+0774    DATA            14
+0775    DATA            67
+0776    DATA            54
+0777    DATA            29
+0778    DATA            94
+0779    DATA            17
+0780    DATA            85
+0781    CEQI          [88]            [42]             [6]
+0785    DATA            89
+0786    DATA            83
+0787    AJRP          [52]
+0789    DATA            81
+0790    DATA            90
+0791    DATA            11
+0792    DATA            38
+0793    DATA            95
+0794    DATA            20
+0795    DATA            93
+0796    DATA            81
+0797    DATA            20
+0798    DATA            20
+0799    DATA            86
+0800    FJMP          [36]            [69]
+0803    DATA            77
+0804    DATA            25
+0805    DATA            15
+0806    DATA            91
+0807    DATA            78
+0808    DATA            32
+0809    DATA            80
+0810    SAVE          [22]
+0812    DATA            11
+0813    DATA            90
+0814    DATA            89
+0815    FJMP          [11]            [73]
+0818    ADDI          [82]            [46]            [77]
+0822    HALT
+0823    DATA            26
+0824    DATA            41
+0825    MULI          [75]            [92]            [52]
+0829    DATA            13
+0830    DATA            80
+0831    DATA            96
+0832    DATA            44
+0833    DATA            38
+0834    DATA            98
+0835    DATA            47
+0836    DATA            96
+0837    DATA            87
+0838    DATA            28
+0839    DATA            65
+0840    DATA            77
+0841    DATA            17
+0842    DATA            48
+0843    DATA            93
+0844    DATA            93
+0845    DATA            46
+0846    CEQI          [82]            [86]            [26]
+0850    DATA            84
+0851    DATA            64
+0852    DATA            38
+0853    DATA            53
+0854    DATA            83
+0855    DATA            67
+0856    DATA            97
+0857    DATA            30
+0858    DATA            64
+0859    DATA            39
+0860    DATA            53
+0861    DATA            31
+0862    DATA            63
+0863    DATA            60
+0864    DATA            11
+0865    DATA            86
+0866    DATA            81
+0867    DATA            22
+0868    DATA            84
+0869    DATA            13
+0870    DATA            89
+0871    DATA            75
+0872    MULI          [77]             [5]            [31]
+0876    DATA            69
+0877    SAVE           [8]
+0879    DATA            75
+0880    DATA            60
+0881    DATA            13
+0882    DATA            14
+0883    DATA            90
+0884    DATA            66
+0885    DATA            28
+0886    DATA            66
+0887    DATA            18
+0888    DATA            85
+0889    DATA            70
+0890    DATA            51
+0891    DATA            82
+0892    DATA            94
+0893    DATA            28
+0894    DATA            29
+0895    HALT
+0896    DATA            35
+0897    DATA            71
+0898    DATA            75
+0899    DATA            80
+0900    ADDI          [93]            [14]            [13]
+0904    DATA            91
+0905    DATA            14
+0906    DATA            83
+0907    DATA            24
+0908    DATA            77
+0909    DATA            32
+0910    CEQI          [48]            [85]            [96]
+0914    DATA            31
+0915    FJMP          [54]            [70]
+0918    DATA            95
+0919    DATA            32
+0920    DATA            35
+0921    DATA            66
+0922    DATA            80
+0923    DATA            88
+0924    SAVE          [96]
+0926    DATA            35
+0927    DATA            80
+0928    DATA            54
+0929    CEQI          [70]            [30]             [2]
+0933    DATA            18
+0934    DATA            59
+0935    DATA            81
+0936    DATA            27
+0937    DATA            31
+0938    DATA            85
+0939    DATA            73
+0940    DATA            35
+0941    DATA            79
+0942    DATA            68
+0943    DATA            30
+0944    DATA            14
+0945    DATA            21
+0946    DATA            67
+0947    DATA            74
+0948    DATA            57
+0949    DATA            60
+0950    DATA            98
+0951    DATA            44
+0952    DATA            46
+0953    DATA            24
+0954    DATA            12
+0955    DATA            60
+0956    DATA            31
+0957    DATA            39
+0958    DATA            68
+0959    DATA            79
+0960    DATA            50
+0961    SAVE          [61]
+0963    DATA            40
+0964    DATA            75
+0965    DATA            54
+0966    DATA            25
+0967    DATA            85
+0968    FJMP          [93]            [56]
+0971    DATA            86
+0972    DATA            74
+0973    DATA            98
+0974    DATA            10
+0975    DATA            15
+0976    DATA            66
+0977    DATA            68
+0978    DATA            13
+0979    DATA            44
+0980    DATA            26
+0981    DATA            98
+0982    DATA            40
+0983    DATA            79
+0984    DATA            80
+0985    DATA            14
+0986    DATA            14
+0987    DATA            86
+0988    DATA            30
+0989    TJMP          [74]            [66]
+0992    DATA            46
+0993    DATA            96
+0994    DATA            17
+0995    DATA            83
+0996    FJMP          [98]            [16]
+0999    DATA            67
+1000    DATA            91
+1001    DATA            90
+1002    DATA            56
+1003    DATA            97
+1004    ADDI          [68]            [14]            [85]
+1008    DATA            93
+1009    DATA            69
+1010    DATA            56
+1011    DATA            88
+1012    DATA            40
+1013    DATA            79
+1014    DATA            29
+1015    DATA            91
+1016    DATA            25
+1017    DATA            68
+1018    DATA            69
+1019    DATA            74
+1020    DATA            48
+1021    DATA            66
+1022    DATA            73
+1023    DATA            76
+1024    DATA            17
+1025    DATA            61
+1026    DATA            31
+1027    DATA            62
+1028    DATA            90
+1029    DATA            84
+1030    DATA            46
+1031    DATA            89
+B    DATA             0
+A    DATA             0
+C    DATA            21
+G    DATA            21
+E    DATA             1
+K    DATA            10
+I    DATA             1
+D    DATA             0
+H    DATA             0
+F    DATA             0
+L    DATA             0
+J    DATA             0
+M    DATA             0
+
+================================================================
+============================ORIGINAL============================
+================================================================
+
+0000    SAVE        [1033]
+0002    CEQI        [1033]               1          [1032]
+0006    TJMP        [1032]              31
+0009    CEQI        [1033]               2          [1032]
+0013    TJMP        [1032]              58
+0016    CEQI        [1033]               3          [1032]
+0020    TJMP        [1032]              81
+0023    CEQI        [1033]               4          [1032]
+0027    TJMP        [1032]             104
+0030    HALT
+0031    MULI        [1034]               1          [1039]
+0035    ADDI             0          [1036]          [1041]
+0039    ADDI        [1035]              -1          [1040]
+0043    CEQI        [1038]               0          [1043]
+0047    MULI            -1          [1043]          [1032]
+0051    ADDI        [1037]          [1032]          [1042]
+0055    FJMP             0             124
+0058    ADDI             0          [1034]          [1039]
+0062    ADDI             0          [1036]          [1041]
+0066    ADDI        [1035]               1          [1040]
+0070    CEQI        [1038]               0          [1043]
+0074    ADDI        [1037]          [1038]          [1042]
+0078    TJMP             1             124
+0081    ADDI        [1034]              -1          [1039]
+0085    CEQI        [1036]               0          [1041]
+0089    MULI             1          [1035]          [1040]
+0093    ADDI        [1038]               0          [1043]
+0097    ADDI        [1037]               0          [1042]
+0101    FJMP             0             124
+0104    ADDI        [1034]               1          [1039]
+0108    CEQI        [1036]               0          [1041]
+0112    MULI        [1035]               1          [1040]
+0116    MULI        [1038]               1          [1043]
+0120    ADDI             0          [1037]          [1042]
+0124    FJMP        [1039]             217
+0127    FJMP        [1040]             217
+0130    CEQI        [1039]              40          [1032]
+0134    TJMP        [1032]             217
+0137    CEQI        [1040]              40          [1032]
+0141    TJMP        [1032]             217
+0144    CEQI        [1039]              33          [1032]
+0148    FJMP        [1032]             165
+0151    CEQI        [1040]              35          [1032]
+0155    FJMP        [1032]             165
+0158    MULI             2               1          [1044]
+0162    TJMP             1             224
+0165    MULI        [1041]          [1043]          [1032]
+0169    FJMP        [1032]             179
+0172    ADDI             1               0          [1044]
+0176    TJMP             1             224
+0179    ADDI        [1041]          [1043]          [1032]
+0183    FJMP        [1032]             217
+0186    ADDI        [1042]          [1043]          [1032]
+0190    ADDI        [1032]              -1          [1032]
+0194    MULI        [1032]              39          [1032]
+0198    ADDI        [1032]          [1039]          [1032]
+0202    ADDI            -1          [1032]          [1032]
+0206    ADDI           252          [1032]           [211]
+0210    CLTI           [0]              58          [1044]
+0214    FJMP             0             224
+0217    ADDI             0               0          [1044]
+0221    FJMP             0             224
+0224    FJMP        [1044]             247
+0227    ADDI             0          [1039]          [1034]
+0231    ADDI             0          [1040]          [1035]
+0235    ADDI        [1041]               0          [1036]
+0239    ADDI        [1043]               0          [1038]
+0243    ADDI        [1042]               0          [1037]
+0247    OUTP        [1044]
+0249    TJMP             1               0
+0252    DATA            33
+0253    DATA            14
+0254    DATA            68
+0255    DATA            54
+0256    DATA            69
+0257    DATA            24
+0258    AJRP          [59]
+0260    MULI           [7]            [68]            [23]
+0264    DATA            97
+0265    DATA            53
+0266    DATA            74
+0267    DATA            21
+0268    DATA            32
+0269    DATA            37
+0270    DATA            55
+0271    DATA            83
+0272    SAVE          [26]
+0274    DATA            85
+0275    DATA            52
+0276    DATA            38
+0277    DATA            10
+0278    DATA            81
+0279    DATA            19
+0280    DATA            82
+0281    DATA            47
+0282    DATA            70
+0283    DATA            27
+0284    DATA            60
+0285    DATA            32
+0286    DATA            98
+0287    DATA            40
+0288    DATA            46
+0289    DATA            75
+0290    DATA            17
+0291    DATA            66
+0292    DATA            11
+0293    DATA            92
+0294    DATA            30
+0295    DATA            84
+0296    DATA            90
+0297    DATA            36
+0298    DATA            71
+0299    FJMP          [82]            [95]
+0302    DATA            45
+0303    DATA            23
+0304    DATA            75
+0305    DATA            49
+0306    DATA            38
+0307    DATA            71
+0308    DATA            72
+0309    MULI          [72]            [26]            [64]
+0313    DATA            93
+0314    DATA            53
+0315    DATA            68
+0316    DATA            90
+0317    DATA            42
+0318    SAVE          [64]
+0320    SAVE          [66]
+0322    DATA            21
+0323    DATA            84
+0324    DATA            47
+0325    DATA            15
+0326    DATA            87
+0327    DATA            60
+0328    DATA            18
+0329    DATA            96
+0330    DATA            30
+0331    DATA            14
+0332    DATA            54
+0333    HALT
+0334    DATA            48
+0335    DATA            12
+0336    DATA            63
+0337    DATA            62
+0338    DATA            86
+0339    DATA            41
+0340    DATA            56
+0341    DATA            79
+0342    DATA            50
+0343    HALT
+0344    DATA            38
+0345    DATA            68
+0346    DATA            16
+0347    DATA            15
+0348    DATA            69
+0349    DATA            53
+0350    DATA            90
+0351    DATA            59
+0352    DATA            28
+0353    DATA            41
+0354    CLTI          [94]            [47]            [74]
+0358    DATA            68
+0359    DATA            56
+0360    DATA            43
+0361    DATA            70
+0362    DATA            22
+0363    DATA            55
+0364    DATA            72
+0365    DATA            87
+0366    DATA            28
+0367    DATA            50
+0368    DATA            28
+0369    DATA            55
+0370    DATA            98
+0371    DATA            97
+0372    DATA            22
+0373    DATA            64
+0374    DATA            63
+0375    DATA            21
+0376    DATA            28
+0377    CEQI          [87]            [91]            [39]
+0381    ADDI          [93]            [52]            [95]
+0385    DATA            96
+0386    DATA            68
+0387    DATA            13
+0388    DATA            24
+0389    DATA            64
+0390    DATA            14
+0391    DATA            65
+0392    DATA            78
+0393    DATA            89
+0394    DATA            34
+0395    DATA            85
+0396    DATA            92
+0397    DATA            35
+0398    DATA            57
+0399    DATA            83
+0400    DATA            70
+0401    DATA            21
+0402    DATA            75
+0403    DATA            43
+0404    DATA            24
+0405    DATA            76
+0406    DATA            74
+0407    DATA            11
+0408    DATA            90
+0409    DATA            55
+0410    DATA            74
+0411    DATA            22
+0412    DATA            63
+0413    AJRP          [95]
+0415    DATA            64
+0416    DATA            79
+0417    MULI          [78]            [30]            [74]
+0421    DATA            75
+0422    DATA            33
+0423    DATA            23
+0424    DATA            47
+0425    DATA            93
+0426    DATA            93
+0427    DATA            56
+0428    DATA            77
+0429    DATA            48
+0430    DATA            72
+0431    DATA            35
+0432    DATA            42
+0433    DATA            82
+0434    DATA            36
+0435    DATA            25
+0436    DATA            20
+0437    DATA            81
+0438    DATA            15
+0439    DATA            56
+0440    DATA            95
+0441    DATA            96
+0442    DATA            33
+0443    DATA            94
+0444    DATA            53
+0445    DATA            46
+0446    DATA            64
+0447    DATA            31
+0448    DATA            46
+0449    DATA            98
+0450    DATA            43
+0451    DATA            40
+0452    DATA            98
+0453    DATA            48
+0454    FJMP          [71]            [44]
+0457    DATA            83
+0458    CLTI          [56]            [64]            [92]
+0462    DATA            72
+0463    DATA            24
+0464    DATA            29
+0465    DATA            35
+0466    DATA            37
+0467    DATA            22
+0468    DATA            63
+0469    DATA            21
+0470    DATA            28
+0471    DATA            68
+0472    DATA            75
+0473    DATA            31
+0474    DATA            77
+0475    DATA            28
+0476    DATA            96
+0477    DATA            71
+0478    DATA            35
+0479    DATA            11
+0480    DATA            66
+0481    DATA            55
+0482    DATA            87
+0483    DATA            17
+0484    DATA            64
+0485    TJMP          [53]            [95]
+0488    DATA            79
+0489    DATA            52
+0490    DATA            95
+0491    DATA            16
+0492    DATA            78
+0493    DATA            80
+0494    DATA            47
+0495    DATA            51
+0496    DATA            90
+0497    DATA            68
+0498    DATA            63
+0499    ADDI          [10]            [99]            [79]
+0503    DATA            80
+0504    DATA            30
+0505    DATA            97
+0506    DATA            32
+0507    DATA            82
+0508    DATA            27
+0509    DATA            62
+0510    DATA            49
+0511    ADDI          [61]            [93]            [71]
+0515    CLTI          [39]            [93]            [40]
+0519    DATA            75
+0520    DATA            50
+0521    DATA            94
+0522    DATA            68
+0523    DATA            22
+0524    SAVE          [44]
+0526    TJMP          [93]            [55]
+0529    DATA            53
+0530    DATA            92
+0531    DATA            92
+0532    DATA            16
+0533    DATA            30
+0534    DATA            94
+0535    DATA            17
+0536    DATA            15
+0537    DATA            77
+0538    DATA            55
+0539    DATA            76
+0540    DATA            25
+0541    DATA            97
+0542    DATA            53
+0543    DATA            73
+0544    DATA            96
+0545    DATA            54
+0546    DATA            98
+0547    DATA            39
+0548    DATA            73
+0549    DATA            75
+0550    TJMP          [56]            [78]
+0553    DATA            81
+0554    DATA            48
+0555    DATA            64
+0556    DATA            73
+0557    DATA            97
+0558    DATA            25
+0559    DATA            71
+0560    DATA            91
+0561    DATA            28
+0562    DATA            56
+0563    DATA            90
+0564    DATA            53
+0565    DATA            75
+0566    DATA            28
+0567    DATA            79
+0568    DATA            63
+0569    DATA            35
+0570    DATA            48
+0571    DATA            81
+0572    CEQI          [28]            [95]            [73]
+0576    DATA            52
+0577    DATA            30
+0578    DATA            29
+0579    DATA            88
+0580    OUTP          [94]
+0582    MULI          [36]            [92]            [86]
+0586    DATA            87
+0587    AJRP          [34]
+0589    DATA            92
+0590    DATA            98
+0591    DATA            30
+0592    HALT
+0593    DATA            40
+0594    DATA            37
+0595    DATA            87
+0596    DATA            36
+0597    DATA            49
+0598    DATA            34
+0599    HALT
+0600    DATA            72
+0601    DATA            38
+0602    DATA            54
+0603    DATA            71
+0604    ADDI          [74]            [41]            [20]
+0608    DATA            72
+0609    DATA            40
+0610    DATA            90
+0611    DATA            89
+0612    FJMP           [1]            [74]
+0615    DATA            50
+0616    DATA            63
+0617    DATA            47
+0618    DATA            98
+0619    DATA            79
+0620    DATA            45
+0621    DATA            90
+0622    DATA            78
+0623    DATA            34
+0624    DATA            10
+0625    DATA            78
+0626    MULI          [72]            [94]            [56]
+0630    DATA            30
+0631    DATA            86
+0632    DATA            45
+0633    DATA            82
+0634    DATA            74
+0635    DATA            51
+0636    DATA            73
+0637    DATA            88
+0638    DATA            36
+0639    DATA            65
+0640    DATA            30
+0641    DATA            63
+0642    CEQI          [17]            [68]            [92]
+0646    DATA            13
+0647    DATA            93
+0648    SAVE          [77]
+0650    DATA            72
+0651    DATA            20
+0652    DATA            90
+0653    DATA            63
+0654    DATA            37
+0655    DATA            86
+0656    DATA            77
+0657    DATA            17
+0658    DATA            95
+0659    DATA            56
+0660    DATA            57
+0661    DATA            61
+0662    DATA            77
+0663    DATA            74
+0664    DATA            19
+0665    DATA            18
+0666    DATA            70
+0667    DATA            34
+0668    DATA            93
+0669    DATA            23
+0670    DATA            96
+0671    CEQI          [93]             [1]            [79]
+0675    DATA            81
+0676    DATA            66
+0677    DATA            27
+0678    DATA            38
+0679    MULI          [12]            [31]            [81]
+0683    DATA            43
+0684    DATA            48
+0685    DATA            93
+0686    DATA            67
+0687    DATA            60
+0688    DATA            17
+0689    DATA            93
+0690    DATA            44
+0691    HALT
+0692    DATA            39
+0693    DATA            72
+0694    DATA            35
+0695    DATA            92
+0696    HALT
+0697    DATA            42
+0698    DATA            46
+0699    DATA            79
+0700    DATA            60
+0701    DATA            22
+0702    DATA            56
+0703    DATA            75
+0704    DATA            60
+0705    DATA            95
+0706    DATA            23
+0707    DATA            84
+0708    DATA            33
+0709    DATA            67
+0710    DATA            16
+0711    DATA            16
+0712    DATA            36
+0713    DATA            55
+0714    DATA            39
+0715    DATA            83
+0716    DATA            46
+0717    DATA            75
+0718    DATA            80
+0719    DATA            79
+0720    MULI          [63]            [25]            [60]
+0724    DATA            20
+0725    OUTP          [39]
+0727    DATA            97
+0728    DATA            20
+0729    DATA            90
+0730    OUTP          [30]
+0732    DATA            86
+0733    AJRP           [7]
+0735    DATA            90
+0736    DATA            80
+0737    DATA            49
+0738    DATA            20
+0739    DATA            98
+0740    DATA            29
+0741    DATA            83
+0742    DATA            51
+0743    DATA            46
+0744    DATA            92
+0745    DATA            27
+0746    DATA            65
+0747    DATA            34
+0748    DATA            57
+0749    DATA            61
+0750    DATA            10
+0751    DATA            94
+0752    DATA            84
+0753    DATA            90
+0754    SAVE          [51]
+0756    DATA            64
+0757    TJMP          [37]            [19]
+0760    DATA            51
+0761    DATA            69
+0762    DATA            73
+0763    DATA            39
+0764    DATA            96
+0765    HALT
+0766    DATA            24
+0767    DATA            34
+0768    DATA            66
+0769    DATA            21
+0770    DATA            76
+0771    DATA            81
+0772    DATA            33
+0773    DATA            85
+0774    DATA            14
+0775    DATA            67
+0776    DATA            54
+0777    DATA            29
+0778    DATA            94
+0779    DATA            17
+0780    DATA            85
+0781    CEQI          [88]            [42]             [6]
+0785    DATA            89
+0786    DATA            83
+0787    AJRP          [52]
+0789    DATA            81
+0790    DATA            90
+0791    DATA            11
+0792    DATA            38
+0793    DATA            95
+0794    DATA            20
+0795    DATA            93
+0796    DATA            81
+0797    DATA            20
+0798    DATA            20
+0799    DATA            86
+0800    FJMP          [36]            [69]
+0803    DATA            77
+0804    DATA            25
+0805    DATA            15
+0806    DATA            91
+0807    DATA            78
+0808    DATA            32
+0809    DATA            80
+0810    SAVE          [22]
+0812    DATA            11
+0813    DATA            90
+0814    DATA            89
+0815    FJMP          [11]            [73]
+0818    ADDI          [82]            [46]            [77]
+0822    HALT
+0823    DATA            26
+0824    DATA            41
+0825    MULI          [75]            [92]            [52]
+0829    DATA            13
+0830    DATA            80
+0831    DATA            96
+0832    DATA            44
+0833    DATA            38
+0834    DATA            98
+0835    DATA            47
+0836    DATA            96
+0837    DATA            87
+0838    DATA            28
+0839    DATA            65
+0840    DATA            77
+0841    DATA            17
+0842    DATA            48
+0843    DATA            93
+0844    DATA            93
+0845    DATA            46
+0846    CEQI          [82]            [86]            [26]
+0850    DATA            84
+0851    DATA            64
+0852    DATA            38
+0853    DATA            53
+0854    DATA            83
+0855    DATA            67
+0856    DATA            97
+0857    DATA            30
+0858    DATA            64
+0859    DATA            39
+0860    DATA            53
+0861    DATA            31
+0862    DATA            63
+0863    DATA            60
+0864    DATA            11
+0865    DATA            86
+0866    DATA            81
+0867    DATA            22
+0868    DATA            84
+0869    DATA            13
+0870    DATA            89
+0871    DATA            75
+0872    MULI          [77]             [5]            [31]
+0876    DATA            69
+0877    SAVE           [8]
+0879    DATA            75
+0880    DATA            60
+0881    DATA            13
+0882    DATA            14
+0883    DATA            90
+0884    DATA            66
+0885    DATA            28
+0886    DATA            66
+0887    DATA            18
+0888    DATA            85
+0889    DATA            70
+0890    DATA            51
+0891    DATA            82
+0892    DATA            94
+0893    DATA            28
+0894    DATA            29
+0895    HALT
+0896    DATA            35
+0897    DATA            71
+0898    DATA            75
+0899    DATA            80
+0900    ADDI          [93]            [14]            [13]
+0904    DATA            91
+0905    DATA            14
+0906    DATA            83
+0907    DATA            24
+0908    DATA            77
+0909    DATA            32
+0910    CEQI          [48]            [85]            [96]
+0914    DATA            31
+0915    FJMP          [54]            [70]
+0918    DATA            95
+0919    DATA            32
+0920    DATA            35
+0921    DATA            66
+0922    DATA            80
+0923    DATA            88
+0924    SAVE          [96]
+0926    DATA            35
+0927    DATA            80
+0928    DATA            54
+0929    CEQI          [70]            [30]             [2]
+0933    DATA            18
+0934    DATA            59
+0935    DATA            81
+0936    DATA            27
+0937    DATA            31
+0938    DATA            85
+0939    DATA            73
+0940    DATA            35
+0941    DATA            79
+0942    DATA            68
+0943    DATA            30
+0944    DATA            14
+0945    DATA            21
+0946    DATA            67
+0947    DATA            74
+0948    DATA            57
+0949    DATA            60
+0950    DATA            98
+0951    DATA            44
+0952    DATA            46
+0953    DATA            24
+0954    DATA            12
+0955    DATA            60
+0956    DATA            31
+0957    DATA            39
+0958    DATA            68
+0959    DATA            79
+0960    DATA            50
+0961    SAVE          [61]
+0963    DATA            40
+0964    DATA            75
+0965    DATA            54
+0966    DATA            25
+0967    DATA            85
+0968    FJMP          [93]            [56]
+0971    DATA            86
+0972    DATA            74
+0973    DATA            98
+0974    DATA            10
+0975    DATA            15
+0976    DATA            66
+0977    DATA            68
+0978    DATA            13
+0979    DATA            44
+0980    DATA            26
+0981    DATA            98
+0982    DATA            40
+0983    DATA            79
+0984    DATA            80
+0985    DATA            14
+0986    DATA            14
+0987    DATA            86
+0988    DATA            30
+0989    TJMP          [74]            [66]
+0992    DATA            46
+0993    DATA            96
+0994    DATA            17
+0995    DATA            83
+0996    FJMP          [98]            [16]
+0999    DATA            67
+1000    DATA            91
+1001    DATA            90
+1002    DATA            56
+1003    DATA            97
+1004    ADDI          [68]            [14]            [85]
+1008    DATA            93
+1009    DATA            69
+1010    DATA            56
+1011    DATA            88
+1012    DATA            40
+1013    DATA            79
+1014    DATA            29
+1015    DATA            91
+1016    DATA            25
+1017    DATA            68
+1018    DATA            69
+1019    DATA            74
+1020    DATA            48
+1021    DATA            66
+1022    DATA            73
+1023    DATA            76
+1024    DATA            17
+1025    DATA            61
+1026    DATA            31
+1027    DATA            62
+1028    DATA            90
+1029    DATA            84
+1030    DATA            46
+1031    DATA            89
+1032    DATA             0
+1033    DATA             0
+1034    DATA            21
+1035    DATA            21
+1036    ADDI          [10]             [1]             [0]
+1040    DATA             0
+1041    DATA             0
+1042    DATA             0
+1043    DATA             0
+1044    DATA             0
