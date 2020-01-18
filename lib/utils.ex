@@ -1,19 +1,19 @@
 defmodule Utils do
-  def to_ints([single_string]), do: to_ints(single_string)
+  def to_ints(string), do: string |> to_strings |> Enum.map(&to_int/1)
 
-  def to_ints(single_string) when is_binary(single_string),
-    do: single_string |> to_strings |> to_ints
+  def to_int([single_string]), do: to_int(single_string)
 
-  def to_ints(list_of_strings) when is_list(list_of_strings) do
-    Enum.map(list_of_strings, fn string ->
-      string
-      |> Integer.parse()
-      |> elem(0)
-    end)
+  def to_int(string) do
+    string
+    |> Integer.parse()
+    |> elem(0)
   end
 
   def to_strings([single_string]), do: to_strings(single_string)
-  def to_strings(single_string), do: String.split(single_string, ",")
+  def to_strings(list_of_strings) when is_list(list_of_strings), do: list_of_strings
+
+  def to_strings(single_string) when is_binary(single_string),
+    do: single_string |> String.trim() |> String.split(",")
 
   def output_to_string(map) when is_map(map) do
     [min_x, max_x, min_y, max_y] =
