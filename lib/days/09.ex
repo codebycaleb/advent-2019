@@ -62,7 +62,7 @@ defmodule D9 do
         [_, _, 1, 204, 1, 99] -> true
         _ -> false
       end)
-      |> Enum.slice(0..1)
+      |> Enum.take(2)
       |> Enum.max()
 
     part_2_hack =
